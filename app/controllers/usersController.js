@@ -1,13 +1,17 @@
-const { User } = require('../models/user');
+const { User } = require('../models');
 
 const controller = {
-  getOne: async (req, res) => {
+  getAll: async (req, res) => {
     try {
+      const users = await User.findAll();
       res.json({
-        msg: 'GetOne'
+        users
       });
     } catch (error) {
-      res.status(400).json(error);
+      console.error(error)
+      res.status(400).json({
+        msg: 'error'
+      });
     }
   }
 };

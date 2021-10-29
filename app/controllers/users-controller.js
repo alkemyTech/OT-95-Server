@@ -1,4 +1,3 @@
-const { User } = require('../models');
 const userService = require('../services/users-service');
 const codeStatus = require('../constants/constants');
 const messages = require('../constants/messages');
@@ -11,28 +10,41 @@ const controller = {
         data: users.length > 0 ? users : messages.RESPONSE_OK_NO_CONTENT
       });
     } catch (error) {
-      console.error(error);
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
   },
   getOne: async (req, res) => {
     try {
       const { id } = req.params;
-      const user = await User.findOne({ where: { id } });
+      const user = await userService.getOne(id);
       res.json({
-        user: user || 'No se ha encontrado el usuario buscado'
+        data: user ? user : messages.RESPONSE_OK_NO_CONTENT
       });
     } catch (error) {
-      res.json(error);
+      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
   },
   createUser: async (req, res) => {
     try {
+      // Por que no valida el unique email?
       const data = req.body;
-      const user = await User.create(data);
-      res.json(user);
+      const user = await userService.create(data);
+      res.json({
+        data: user ? user : messages.RESPONSE_OK_NO_CONTENT
+      });
     } catch (error) {
-      res.json(error);
+      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
+    }
+  },
+  deleteUser: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const user = await userService.delete(id);
+      res.json({
+        data: user ? user : messages.RESPONSE_OK_NO_CONTENT
+      });
+    } catch (error) {
+      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
   }
 };

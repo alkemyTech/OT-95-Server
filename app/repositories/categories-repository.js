@@ -25,5 +25,10 @@ const deleteCategory = async (id) => {
   return response;
 };
 
-module.exports = { getCategories, getCategory, createCategory, updateCategory, deleteCategory };
-
+module.exports = {
+  getCategories,
+  getCategory,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+};

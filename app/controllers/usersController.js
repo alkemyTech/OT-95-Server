@@ -16,11 +16,19 @@ const controller = {
   getOne: async (req, res) => {
     try {
       const { id } = req.params;
-      console.log(`el id es ${id}`);
-      const user = await User.findOne({ where: { id: id } });
+      const user = await User.findOne({ where: { id } });
       res.json({
         user: user || 'No se ha encontrado el usuario buscado'
       });
+    } catch (error) {
+      res.json(error);
+    }
+  },
+  createUser: async (req, res) => {
+    try {
+      const data = req.body;
+      const user = await User.create(data);
+      res.json(user);
     } catch (error) {
       res.json(error);
     }

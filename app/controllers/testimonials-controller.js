@@ -1,4 +1,4 @@
-const testimonialsService = require("../services/testimonialsService");
+const testimonialsService = require("../services/testimonials-service");
 const codeStatus = require("../constants/constants");
 const messages = require("../constants/messages");
 

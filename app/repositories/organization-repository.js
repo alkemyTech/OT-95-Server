@@ -1,5 +1,5 @@
 'use strict';
-const Organization = require('../models/organization-model');
+const { Organization } = require('../models/index');
 
 const getAll = async () => {
   try {

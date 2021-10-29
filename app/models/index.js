@@ -5,9 +5,12 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const config = require(__dirname + '/../config/config').development;
+const OrganizationModel = require('../models/organization-model');
 const db = {};
 
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
+
+const Organization = OrganizationModel(sequelize, Sequelize);
 
 fs
   .readdirSync(__dirname)
@@ -28,4 +31,7 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-module.exports = db;
+module.exports = {
+  db,
+  Organization
+};

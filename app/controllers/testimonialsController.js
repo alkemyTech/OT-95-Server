@@ -1,4 +1,4 @@
-const service = require("../services/testimonials");
+const testimonialsService = require("../services/testimonialsService");
 const codeStatus = require("../constants/constants");
 const messages = require("../constants/messages");
 
@@ -6,7 +6,7 @@ module.exports = {
 
     getAll : async (req,res) => {
         try {
-            const testimonials = await service.getAll();
+            const testimonials = await testimonialsService.getAll();
     
             testimonials.length > 0 ? res.status(codeStatus.RESPONSE_OK).json(testimonials) : res.status(codeStatus.RESPONSE_OK_NO_CONTENT).json(messages.RESPONSE_OK_NO_CONTENT)
         } catch (err) {
@@ -17,7 +17,7 @@ module.exports = {
     
     getById : async (req,res) => {
         try {
-            const testimonial = await service.getById(req.params.id)
+            const testimonial = await testimonialsService.getById(req.params.id)
     
             if(testimonial){
                 res.status(codeStatus.RESPONSE_OK).json(testimonial)
@@ -32,7 +32,8 @@ module.exports = {
 
     create : (req,res) => {
         try {
-            const testimonialCreated = await service.create(req.body)
+            const {name,image,content} = req.body
+            const testimonialCreated = await testimonialsService.create(name,image,content)
 
             if(testimonialCreated){
                 res.status(codeStatus.RESPONSE_OK_CREATED).json(messages.RESPONSE_OK_CREATED)
@@ -47,9 +48,10 @@ module.exports = {
 
     update : (req,res) => {
         try {
-            const testimonial = await service.getById(req.params.id)
+            const {name,image,content} = req.body
+            const testimonial = await testimonialsService.getById(req.params.id)
 
-            testimonial ? await service.update(req.body,req.params.id) : res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.BAD_REQUEST_ERROR)
+            testimonial ? await testimonialsService.update(req.params.id,name,image,content) : res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.BAD_REQUEST_ERROR)
 
             res.status(codeStatus.RESPONSE_OK).json(messages.RESPONSE_OK)
         } catch (err) {
@@ -60,9 +62,9 @@ module.exports = {
 
     destroy : (req,res) =>{
         try {
-            const testimonial = await service.getById(req.params.id)
+            const testimonial = await testimonialsService.getById(req.params.id)
             
-            testimonial ? await service.destroy(req.params.id) : res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.BAD_REQUEST_ERROR)
+            testimonial ? await testimonialsService.destroy(req.params.id) : res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.BAD_REQUEST_ERROR)
 
             res.status(codeStatus.RESPONSE_OK).json(messages.RESPONSE_OK)
         } catch (err) {

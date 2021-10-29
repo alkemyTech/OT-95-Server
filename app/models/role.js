@@ -12,9 +12,26 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Role.init({
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    deletedAt: DataTypes.DATE
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: 
+    {
+      type: DataTypes.STRING,
+    },
+    deletedAt: {
+      type: DataTypes.DATE
+    
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+    }
   }, {
     sequelize,
     modelName: 'Role',

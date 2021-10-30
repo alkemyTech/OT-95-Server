@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-const status = require('../constants/constants');
-const messages = require('../constants/messages');
 const {
     getMemberById,
     getMembers,
@@ -10,59 +7,28 @@ const {
 } = require('../services/members-service');
 
 const getById = async (req, res) => {
-  try {
-    const member = await getMemberById(req.params.id);
-    if (!member) {
-      return res.status(status.NOT_FOUND_ERROR).json({ message: messages.NOT_FOUND_ERROR });
-    }
-    return res.status(status.RESPONSE_OK).json(member);
-  } catch (error) {
-    console.log(error);
-    return res.status(status.INTERNAL_ERROR).json({ message: messages.INTERNAL_ERROR });
-  }
+  const member = await getMemberById(req.params.id);
+  return res.status(member.status).json(member.response);
 };
 
 const getAll = async (req, res) => {
-  try {
-    const members = await getMembers();
-    if (!members) {
-      return res.status(status.NOT_FOUND_ERROR).json({ message: messages.NOT_FOUND_ERROR });
-    }
-    return res.status(status.RESPONSE_OK).json(members);
-  } catch (error) {
-    console.log(error);
-    return res.status(status.INTERNAL_ERROR).json({ message: messages.INTERNAL_ERROR });
-  }
+  const members = await getMembers();
+  return res.status(members.status).json(members.response);
 };
 
 const create = async (req, res) => {
-  try {
-    await createMember(req.body);
-    res.status(status.RESPONSE_OK_CREATED).json({ message: messages.RESPONSE_OK_CREATED });
-  } catch (error) {
-    console.log(error);
-    res.status(status.INTERNAL_ERROR).json({ message: messages.INTERNAL_ERROR });
-  }
+  const member = await createMember(req.body);
+  return res.status(member.status).json(member.response);
 };
 
 const update = async (req, res) => {
-  try {
-    updateMember(req.params.id, req.body);
-    res.status(status.RESPONSE_OK).json({ message: messages.RESPONSE_OK });
-  } catch (error) {
-    console.log(error);
-    res.status(status.INTERNAL_ERROR).json({ message: messages.INTERNAL_ERROR });
-  }
+  const member = await updateMember(req.params.id, req.body);
+  return res.status(member.status).json(member.response);
 };
 
 const destroy = async (req, res) => {
-  try {
-    destroyMember(req.params.id);
-    res.status(status.RESPONSE_OK).json({ message: messages.RESPONSE_OK });
-  } catch (error) {
-    console.log(error);
-    res.status(status.INTERNAL_ERROR).json({ message: messages.INTERNAL_ERROR });
-  }
+  const member = await destroyMember(req.params.id);
+  return res.status(member.status).json(member.response);
 };
 
 module.exports = {

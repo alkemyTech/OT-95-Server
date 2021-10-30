@@ -1,23 +1,23 @@
-const { testimonials } = require('../models/index');
+const { Testimonial } = require('../models/index');
 
 module.exports = {
 
-  getAll: () => testimonials.findAll(),
+  getAll: () => Testimonial.findAll(),
 
-  getById: id => testimonials.findByPk(id),
+  getById: id => Testimonial.findByPk(id),
 
-  create: (name, image, content) => testimonials.create({
+  create: (name, image, content) => Testimonial.create({
     name,
-    image: image || null,
-    content: content || null
+    image,
+    content
   }),
 
-  update: (id, name, image, content) => testimonials.update({
+  update: (id, name, image, content) => Testimonial.update({
     name,
-    image: image || null,
-    content: content || null
+    image,
+    content
   }, { where: { id } }),
 
-  destroy: id => testimonials.destroy({ where: { id } })
+  destroy: id => Testimonial.destroy({ where: { id } })
 
 };

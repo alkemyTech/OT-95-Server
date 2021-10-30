@@ -1,15 +1,13 @@
 const testimonilasRepository = require('../repositories/testimonials-repository');
 
-module.exports = {
+const getAll = () => testimonilasRepository.getAll();
 
-  getAll: () => testimonilasRepository.getAll(),
+const getById = id => testimonilasRepository.getById(id);
 
-  getById: id => testimonilasRepository.getById(id),
+const create = (name, image, content) => testimonilasRepository.create(name, image, content);
 
-  create: (name, image, content) => testimonilasRepository.create(name, image, content),
+const update = (name, image, content) => testimonilasRepository.update(name, image, content);
 
-  update: (name, image, content) => testimonilasRepository.update(name, image, content),
+const destroy = id => testimonilasRepository.destroy(id);
 
-  destroy: id => testimonilasRepository.destroy(id)
-
-};
+module.exports = { getAll, getById, create, update, destroy };

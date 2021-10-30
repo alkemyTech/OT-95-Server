@@ -18,7 +18,7 @@ module.exports = {
 
   getById: async (req, res) => {
     try {
-      const category = getById(req.params.id);
+      const category = await getById(req.params.id);
       if (category) {
         return res
           .status(statusResponses.RESPONSE_OK)
@@ -49,7 +49,12 @@ module.exports = {
 
   update: async (req, res) => {
     try {
-      await update(req.params.id, req.body);
+      const [response] = await update(req.params.id, req.body);
+      if (response === 0) {
+        return res
+          .status(statusResponses.BAD_REQUEST_ERROR)
+          .json(messages.BAD_REQUEST_ERROR);
+      }
       return res.status(statusResponses.RESPONSE_OK)
         .json(messages.RESPONSE_OK);
     } catch (error) {
@@ -61,7 +66,12 @@ module.exports = {
 
   remove: async (req, res) => {
     try {
-      await remove(req.params.id);
+      const response = await remove(req.params.id);
+      if (response === 0) {
+        return res
+          .status(statusResponses.BAD_REQUEST_ERROR)
+          .json(messages.BAD_REQUEST_ERROR);
+      }
       return res.status(statusResponses.RESPONSE_OK)
         .json(messages.RESPONSE_OK);
     } catch (error) {

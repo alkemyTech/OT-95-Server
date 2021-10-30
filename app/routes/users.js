@@ -15,10 +15,7 @@ router.get('/', usersController.getAll);
 
 router.get('/:id', usersController.getOne);
 
-router.post('/', [
-  check('email').custom(validator.existsUserWithEmail),
-  validateFields
-], usersController.createUser);
+router.post('/', usersController.createUser);
 
 router.delete('/:id', usersController.deleteUser);
 

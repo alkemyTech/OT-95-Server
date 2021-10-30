@@ -26,7 +26,6 @@ const controller = {
   },
   createUser: async (req, res) => {
     try {
-      // Por que no valida el unique email?
       const data = req.body;
       const user = await userService.create(data);
       res.json({
@@ -52,9 +51,6 @@ const controller = {
       const { id } = req.params;
       const data = req.body;
       const user = await userService.update(id, data);
-      console.log(id);
-      console.log(data)
-      console.log(user);
       res.json({
         data: user ? user : messages.RESPONSE_OK_NO_CONTENT
       });

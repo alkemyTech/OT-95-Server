@@ -46,6 +46,22 @@ const controller = {
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
+  },
+  updateUser: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const data = req.body;
+      const user = await userService.update(id, data);
+      console.log(id);
+      console.log(data)
+      console.log(user);
+      res.json({
+        data: user ? user : messages.RESPONSE_OK_NO_CONTENT
+      });
+    } catch (error) {
+      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
+      
+    }
   }
 };
 module.exports = controller;

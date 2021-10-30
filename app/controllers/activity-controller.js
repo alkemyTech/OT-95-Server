@@ -4,9 +4,10 @@ const {
   getById,
   remove,
   update,
-} = require('../services/repositories/activity-repository');
+} = require('../repositories/activity-repository');
 
-const activityController = {
+
+module.exports = {
   getAll: async (req, res) => {
     const response = await getAll();
 
@@ -40,5 +41,3 @@ const activityController = {
     res.json({ response });
   },
 };
-
-module.exports = activityController;

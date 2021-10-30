@@ -1,4 +1,4 @@
-const { Activity } = require('../../models/index');
+const { Activity } = require('../models/index');
 
 const getById = async (id) => {
   const response = await Activity.findByPk(id);

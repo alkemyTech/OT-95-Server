@@ -1,6 +1,6 @@
 const statusCode = require('../constants/constants');
 const messages = require('../constants/messages');
-const { getRoles, createRole, getRole, updateRole, deleteRole } = require('../repositories/roles-repository');
+const { createRole, deleteRole, getRoles, getRole, updateRole } = require('../repositories/roles-repository');
 
 const getById = async (req, res) => {
   try {

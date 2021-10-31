@@ -1,50 +1,18 @@
 'use strict';
 const { Organization } = require('../models/index');
 
-const getAll = async () => {
-  try {
-    return await Organization.findAll();
-  } catch (err) {
-    return err.message;
-  }
-};
-
-const getById = async (organizationId) => {
-  try {
-    return await Organization.findByPk(organizationId);
-  } catch (err) {
-    return err.message;
-  }
-};
-
-const create = async (organizationData) => {
-  try {
-    return await Organization.create(organizationData);
-  } catch (err) {
-    return err.message;
-  }
-};
-
-const update = async (organizationId, organizationData) => {
-  try {
-    return await Organization.update(organizationData, { where: { id: organizationId } });
-  } catch (err) {
-    return err.message;
-  }
-};
-
-const remove = async (organizationId) => {
-  try {
-    return await Organization.destroy({ where: { id: organizationId } });
-  } catch (err) {
-    return err.message;
-  }
-};
-
 module.exports = {
-  getAll,
-  getById,
-  create,
-  update,
-  remove
+
+  getAll: () => Organization.findAll(),
+
+  getById: id => Organization.findByPk(id),
+
+  create: organizationData => Organization.create(organizationData),
+
+  update: (id, organizationData) => Organization.update(
+    organizationData, { where: { id } }
+  ),
+
+  remove: id => Organization.destroy({ where: { id } })
+
 };

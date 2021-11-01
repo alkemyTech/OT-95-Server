@@ -1,8 +1,6 @@
-'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Testimonials', {
+    await queryInterface.createTable('Members', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,13 +8,23 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        allowNull: false,
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      facebookUrl: {
+        type: Sequelize.STRING
+      },
+      instagramUrl: {
+        type: Sequelize.STRING
+      },
+      linkedinUrl: {
         type: Sequelize.STRING
       },
       image: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
-      content: {
+      description: {
         type: Sequelize.STRING
       },
       deletedAt: {
@@ -32,7 +40,8 @@ module.exports = {
       }
     });
   },
+  // eslint-disable-next-line no-unused-vars
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Testimonials');
+    await queryInterface.dropTable('Members');
   }
 };

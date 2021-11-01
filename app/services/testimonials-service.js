@@ -1,27 +1,16 @@
-const testimonials = require("../models/testimonial");
+const testimonilasRepository = require('../repositories/testimonials-repository');
 
 module.exports = {
 
-  getAll : async () => await testimonials.findAll(),
+  getAll: () => testimonilasRepository.getAll(),
 
-  getById : async (id) => await testimonials.findByPk(id),
+  getById: id => testimonilasRepository.getById(id),
 
-  create : async (name,image,content) => await testimonials.create({
-    name : name,
-    image : image || null,
-    content : content || null
-  }),
+  create: (name, image, content) => testimonilasRepository.create(name, image, content),
 
-  update : async (id,name,image,content) => await testimonials.update({
-    name,
-    image : image || null,
-    content : content || null
-  },{
-    where : {
-      id : id
-    }
-  }),
-  
-  destroy : async (id) => await testimonials.destroy({ where : { id : id }})
-  
-}
+  update: (name, image, content) => testimonilasRepository.update(name, image, content),
+
+  destroy: id => testimonilasRepository.destroy(id)
+
+};
+

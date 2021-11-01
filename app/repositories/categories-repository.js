@@ -1,34 +1,24 @@
 const { Categories } = require('../models/index');
 
-const getCategories = async () => {
-  const response = await Categories.findAll();
-  return response;
-};
-
-const getCategory = async (id) => {
-  const response = await Categories.findByPk(id);
-  return response;
-};
-
-const createCategory = async (data) => {
-  const response = await Categories.create(data);
-  return response;
-};
-
-const updateCategory = async (id, data) => {
-  const response = await Categories.update(data, { where: { id } });
-  return response;
-};
-
-const deleteCategory = async (id) => {
-  const response = await Categories.destroy({ where: { id } });
-  return response;
-};
-
 module.exports = {
-  getCategories,
-  getCategory,
-  createCategory,
-  updateCategory,
-  deleteCategory,
+  getCategories: async () => {
+    return Categories.findAll();
+  },
+
+  getCategory: async (id) => {
+    return Categories.findByPk(id);
+  },
+
+  createCategory: async (data) => {
+    return Categories.create(data);
+  },
+
+  updateCategory: async (id, data) => {
+    return Categories.update(data, { where: { id } });
+  },
+
+  deleteCategory: async (id) => {
+    return Categories.destroy({ where: { id } });
+  },
 };
+

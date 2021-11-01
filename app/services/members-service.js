@@ -17,7 +17,7 @@ module.exports = {
   getAll: async () => {
     try {
       const members = await membersRepository.getAll();
-      if (members.lenght < 1) {
+      if (members.length === 0) {
         return { status: status.NOT_FOUND_ERROR, response: messages.NOT_FOUND_ERROR };
       }
       return { status: status.RESPONSE_OK, response: members };

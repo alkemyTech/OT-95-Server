@@ -6,7 +6,7 @@ module.exports = {
     return member;
   },
   getAll: async () => {
-    const members = await Member.find();
+    const members = await Member.findAll();
     return members;
   },
   create: async (data) => {

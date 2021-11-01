@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     aboutUsText: DataTypes.TEXT
   }, {
     sequelize,
+    paranoid: true,
     modelName: 'Organization',
   });
   return Organization;

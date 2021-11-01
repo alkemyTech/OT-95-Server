@@ -18,7 +18,7 @@ const controller = {
       const { id } = req.params;
       const user = await userService.getOne(id);
       res.json({
-        data: user ? user : messages.RESPONSE_OK_NO_CONTENT
+        data: user || messages.RESPONSE_OK_NO_CONTENT
       });
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
@@ -29,7 +29,7 @@ const controller = {
       const data = req.body;
       const user = await userService.create(data);
       res.json({
-        data: user ? user : messages.RESPONSE_OK_NO_CONTENT
+        data: user || messages.RESPONSE_OK_NO_CONTENT
       });
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
@@ -40,7 +40,7 @@ const controller = {
       const { id } = req.params;
       const user = await userService.delete(id);
       res.json({
-        data: user ? user : messages.RESPONSE_OK_NO_CONTENT
+        data: user || messages.RESPONSE_OK_NO_CONTENT
       });
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
@@ -52,11 +52,10 @@ const controller = {
       const data = req.body;
       const user = await userService.update(id, data);
       res.json({
-        data: user ? user : messages.RESPONSE_OK_NO_CONTENT
+        data: user || messages.RESPONSE_OK_NO_CONTENT
       });
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
-      
     }
   }
 };

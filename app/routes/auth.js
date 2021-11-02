@@ -10,8 +10,8 @@ const validator = require('../helpers/db-validator');
 
 const { check } = require('express-validator');
 
-/* GET users listing. */
 router.post('/register', [
+  // Falta validar si el email ya existe, estimo que será en otro ticket!
   check('email', 'Debes ingresar un email').notEmpty(),
   check('email', 'Debes ingresar un mail válido').isEmail(),
   check('firstName', 'Debes ingresar un nombre').notEmpty(),
@@ -19,5 +19,11 @@ router.post('/register', [
   check('password', 'Debes ingresar una contraseña').notEmpty(),
   validateFields
 ], usersController.createUser);
+
+router.post('/login', [
+  check('email', 'Debes ingresar un email').notEmpty(),
+  check('password', 'Debes ingresar una contraseña').notEmpty(),
+  validateFields
+], usersController.login);
 
 module.exports = router;

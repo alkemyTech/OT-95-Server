@@ -4,7 +4,7 @@ const messages = require('../constants/messages');
 
 module.exports = {
   validateCreate: async (req, res, next) => {
-    await check('name').notEmpty().run(req);
+    await check('name').isString().notEmpty().run(req);
     await check('description').isString().optional().run(req);
     await check('image').isString().optional().run(req);
     const errors = validationResult(req);

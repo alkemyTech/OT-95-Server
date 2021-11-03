@@ -4,14 +4,15 @@ const router = express.Router();
 
 const controller = require('../controllers/testimonials-controller');
 
-const validateTestimonials = require('../middlewares/testimonials-create');
-const validatorFields = require('../middlewares/validate-fields');
+const validateTestimonials = require('../middlewares/testimonials-middlewares');
 
-router
-    .get('/', controller.all)
-    .post('/', validateTestimonials, validatorFields, controller.create)
-    .get('/:id', controller.getById)
-    .put('/:id', controller.update)
-    .delete('/:id', controller.destroy);
+router.route('/')
+    .get(controller.all)
+    .post(validateTestimonials, controller.create);
+
+router.route('/:id')
+    .get(controller.getById)
+    .put(controller.update)
+    .delete(controller.destroy);
 
 module.exports = router;

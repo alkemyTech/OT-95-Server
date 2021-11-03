@@ -42,6 +42,14 @@ const controller = {
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
+  },
+  login: async (req, res) => {
+    try {
+      const user = await userService.login(req, res);
+      res.json(user);
+    } catch (error) {
+      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
+    }
   }
 };
 module.exports = controller;

@@ -1,5 +1,6 @@
 'use strict';
 const OrganizationService = require('../services/organization-service');
+const { validationResult } = require('express-validator');
 const codeStatus = require('../constants/constants');
 const messages = require('../constants/messages');
 
@@ -22,10 +23,15 @@ module.exports = {
   },
 
   create: async (req, res) => {
-    try {
-      res.json(await OrganizationService.create(req, res));
-    } catch (err) {
-      res.status(codeStatus.BAD_REQUEST_ERROR).json({ message: messages.BAD_REQUEST_ERROR });
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(422).json({ status: 422, message: errors.array() });
+    } else {
+      try {
+        res.json(await OrganizationService.create(req, res));
+      } catch (err) {
+        res.status(codeStatus.BAD_REQUEST_ERROR).json({ message: messages.BAD_REQUEST_ERROR });
+      }
     }
   },
 
@@ -34,6 +40,19 @@ module.exports = {
       res.json(await OrganizationService.update(req, res));
     } catch (err) {
       res.status(codeStatus.BAD_REQUEST_ERROR).json({ message: messages.BAD_REQUEST_ERROR });
+    }
+  },
+
+  updatePublicData: async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(422).json({ status: 422, message: errors.array() });
+    } else {
+      try {
+        res.json(await OrganizationService.updatePublicData(req, res));
+      } catch (err) {
+        res.status(codeStatus.BAD_REQUEST_ERROR).json({ message: messages.BAD_REQUEST_ERROR });
+      }
     }
   },
 

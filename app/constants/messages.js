@@ -10,6 +10,14 @@ const REQUEST_TIMEOUT = 'Request timeout';
 const UNAUTHORIZED_USER_CREDENTIALS = 'Unauthorized user credentials';
 const FORBIDDEN = 'Forbidden';
 
+// Organization messages
+const NAME_NOT_FOUND = 'The name is required';
+const IMAGE_NOT_FOUND = 'The image is required';
+const WELCOME_TEXT_NOT_FOUND = 'The welcomeText is required';
+const EMAIL_NOT_FOUND = 'The image is required';
+const INVALID_EMAIL = 'The email entered is not valid';
+const INVALID_PHONE = 'The phone entered is not valid';
+
 module.exports = {
   NOT_FOUND_ERROR,
   BAD_REQUEST_ERROR,
@@ -21,5 +29,11 @@ module.exports = {
   RESPONSE_OK_NO_CONTENT,
   REQUEST_TIMEOUT,
   UNAUTHORIZED_USER_CREDENTIALS,
-  FORBIDDEN
+  FORBIDDEN,
+  NAME_NOT_FOUND,
+  IMAGE_NOT_FOUND,
+  EMAIL_NOT_FOUND,
+  INVALID_EMAIL,
+  WELCOME_TEXT_NOT_FOUND,
+  INVALID_PHONE
 };

@@ -1,6 +1,9 @@
 const UsersRepository = require('../repositories/users-repository');
 const codeStatus = require('../constants/constants');
 const messages = require('../constants/messages');
+const bcrypt = require('bcrypt');
+const usersRepository = require('../repositories/users-repository');
+
 
 module.exports = {
   getAll: async (req, res) => {
@@ -17,8 +20,9 @@ module.exports = {
       const user = await UsersRepository.getOne(id);
       if (!user) {
         res.status(codeStatus.NOT_FOUND_ERROR).json({ message: messages.NOT_FOUND_ERROR });
+      } else {
+        res.status(codeStatus.RESPONSE_OK).json({ data: user });
       }
-      res.status(codeStatus.RESPONSE_OK).json({ data: user });
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
@@ -26,6 +30,8 @@ module.exports = {
   create: async (req, res) => {
     try {
       const data = req.body;
+      const saltRounds = 10;
+      data.password = bcrypt.hashSync(data.password, saltRounds);
       const user = await UsersRepository.create(data);
       res.json({
         data: user || messages.RESPONSE_OK_NO_CONTENT
@@ -53,6 +59,26 @@ module.exports = {
       res.json({
         data: user ? messages.RESPONSE_OK : messages.RESPONSE_OK_NO_CONTENT
       });
+    } catch (error) {
+      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
+    }
+  },
+  login: async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const user = await usersRepository.getUserWithEmail(email);
+      if (!user) {
+        res.status(codeStatus.NOT_FOUND_ERROR).json({
+          ok: false
+        });
+      } else {
+        const success = bcrypt.compareSync(password, user.password);
+        if (success) {
+          res.status(codeStatus.RESPONSE_OK).json(user);
+        } else {
+          res.status(codeStatus.RESPONSE_OK).json(messages.RESPONSE_OK_NO_CONTENT);
+        }
+      }
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }

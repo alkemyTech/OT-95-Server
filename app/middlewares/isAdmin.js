@@ -4,13 +4,8 @@ const statusCodes = require('../constants/constants');
 
 module.exports = {
   isAdmin: (req, res, next) => {
-    const { id } = req.user;
-    const { roleId } = getOne(id);
-
-    if (roleId === 0) {
-      next();
-    } else {
-      res.status(statusCodes.FORBIDDEN).json(messages.FORBIDDEN);
-    }
-  },
+    const [user] = getOne(req.user.id);
+    return user.roleId === 0 ? next() :
+      res.status(statusCodes.FORBIDDEN).json({ message: messages.FORBIDDEN });
+  }
 };

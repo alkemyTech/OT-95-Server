@@ -19,4 +19,5 @@ const generateJwt = (uid = '', roleId = '') => {
 
 module.exports = {
   generateJwt
-}
+};
+

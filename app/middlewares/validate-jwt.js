@@ -12,7 +12,7 @@ const validateJwt = (req = request, res = response, next) => {
   }
   try {
     const prueba = jwt.verify(token, constants.SECRETORPRIVATEKEY);
-    console.log(prueba)
+    console.log(prueba);
     next();
   } catch (error) {
     return res.status(constants.NOK_USER_CREDENTIALS).json({

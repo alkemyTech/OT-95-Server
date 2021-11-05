@@ -9,4 +9,10 @@ module.exports = {
     check('image').optional().isString(),
     validateFields
   ],
+  validateUpdate: [
+    check('name').optional().isString(),
+    check('description').optional().isString(),
+    check('image').optional().isString(),
+    validateFields
+  ]
 };

@@ -11,6 +11,6 @@ router.get('/', validateJWT, isAdmin, categoriesController.getAll);
 
 router.post('/', validateJWT, isAdmin, validateCreate, categoriesController.create);
 
-router.patch('/:id', validateJWT, isAdmin, validateUpdate, categoriesController.update);
+router.put('/:id', validateJWT, isAdmin, validateUpdate, categoriesController.update);
 
 module.exports = router;

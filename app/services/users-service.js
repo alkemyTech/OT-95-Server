@@ -75,7 +75,7 @@ module.exports = {
       } else {
         const success = bcrypt.compareSync(password, user.password);
         if (success) {
-          const token = await generateJwt(user.id, user.roleId);
+          const token = await generateJwt(user);
           res.status(codeStatus.RESPONSE_OK).json({ user, token });
         } else {
           res.status(codeStatus.RESPONSE_OK).json(messages.RESPONSE_OK_NO_CONTENT);

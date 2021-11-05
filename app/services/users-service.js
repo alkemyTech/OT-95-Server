@@ -3,6 +3,7 @@ const codeStatus = require('../constants/constants');
 const messages = require('../constants/messages');
 const bcrypt = require('bcrypt');
 const usersRepository = require('../repositories/users-repository');
+const { generateJwt } = require('../helpers/generate-jwt');
 
 
 module.exports = {
@@ -74,7 +75,8 @@ module.exports = {
       } else {
         const success = bcrypt.compareSync(password, user.password);
         if (success) {
-          res.status(codeStatus.RESPONSE_OK).json(user);
+          const token = await generateJwt(user.id, user.roleId);
+          res.status(codeStatus.RESPONSE_OK).json({ user, token });
         } else {
           res.status(codeStatus.RESPONSE_OK).json(messages.RESPONSE_OK_NO_CONTENT);
         }

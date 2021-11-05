@@ -6,7 +6,7 @@ const {
   getById,
   remove,
   update,
-} = require('../repositories/activity-repository');
+} = require('../services/activity-service');
 
 module.exports = {
   getAll: async (req, res) => {

@@ -9,6 +9,8 @@ const RESPONSE_OK_NO_CONTENT = 'No Content';
 const REQUEST_TIMEOUT = 'Request timeout';
 const UNAUTHORIZED_USER_CREDENTIALS = 'Unauthorized user credentials';
 const FORBIDDEN = 'Forbidden';
+const NO_TOKEN = 'There is no token';
+const INVALID_TOKEN = 'The token es invalid';
 
 module.exports = {
   NOT_FOUND_ERROR,
@@ -21,5 +23,7 @@ module.exports = {
   RESPONSE_OK_NO_CONTENT,
   REQUEST_TIMEOUT,
   UNAUTHORIZED_USER_CREDENTIALS,
-  FORBIDDEN
+  FORBIDDEN,
+  NO_TOKEN,
+  INVALID_TOKEN
 };

@@ -26,6 +26,18 @@ module.exports = {
     }
   },
 
+  getPublicData: async (req, res) => {
+    try {
+      const organization = await OrganizationRepository.getPublicData();
+      if (organization === null) {
+        res.status(codeStatus.NOT_FOUND_ERROR).json({ message: messages.NOT_FOUND_ERROR });
+      }
+      res.status(codeStatus.RESPONSE_OK).json({ data: organization });
+    } catch (err) {
+      res.status(codeStatus.BAD_REQUEST_ERROR).json({ message: messages.BAD_REQUEST_ERROR });
+    }
+  },
+
   create: async (req, res) => {
     try {
       const organization = await OrganizationRepository.create(req.body);

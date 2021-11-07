@@ -15,6 +15,9 @@ router.route('/:id')
     .put(OrganizationController.update)
     .delete(OrganizationController.remove);
 
+router.route('/public')
+    .get(OrganizationController.getPublicData);
+
 router.route('/public/:id')
     .put(isAdmin, middleware.validateOrgPublicUpdate, OrganizationController.updatePublicData);
 

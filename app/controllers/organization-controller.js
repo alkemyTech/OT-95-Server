@@ -22,6 +22,14 @@ module.exports = {
     }
   },
 
+  getPublicData: async (req, res) => {
+    try {
+      res.json(await OrganizationService.getPublicData(req, res));
+    } catch (err) {
+      res.status(codeStatus.BAD_REQUEST_ERROR).json({ message: messages.BAD_REQUEST_ERROR });
+    }
+  },
+
   create: async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

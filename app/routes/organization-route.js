@@ -2,6 +2,7 @@
 const express = require('express');
 const OrganizationController = require('../controllers/organization-controller');
 const middleware = require('../middlewares/organization-middleware');
+const { isAdmin } = require('../middlewares/isAdmin');
 
 const router = express.Router();
 
@@ -15,6 +16,6 @@ router.route('/:id')
     .delete(OrganizationController.remove);
 
 router.route('/public/:id')
-    .put(middleware.validateOrgPublicUpdate, OrganizationController.updatePublicData);
+    .put(isAdmin, middleware.validateOrgPublicUpdate, OrganizationController.updatePublicData);
 
 module.exports = router;

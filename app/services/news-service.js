@@ -6,7 +6,7 @@ const getById = id => newsRepository.getById(id);
 
 const create = (name, image, content) => newsRepository.create(name, image, content);
 
-const update = (name, image, content) => newsRepository.update(name, image, content);
+const update = (name, image, content) => newsRepository.update(id, name, image, content);
 
 const destroy = id => newsRepository.destroy(id);
 

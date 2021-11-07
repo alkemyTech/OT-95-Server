@@ -7,7 +7,6 @@ const { isAdmin } = require('../middlewares/isAdmin');
 const validateJwt = require('../middlewares/validate-jwt');
 
 router.post('/', [validateCreate, validateJwt, isAdmin], create);
-// router.put('/:id', [validateJwt, isAdmin], update);
 router.put('/:id', [validateJwt, isAdmin], update);
 
 module.exports = router;

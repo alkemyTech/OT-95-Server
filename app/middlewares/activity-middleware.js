@@ -6,6 +6,6 @@ module.exports = {
     check('name', 'name is required.').notEmpty().isString();
     check('content', 'content is required').notEmpty().isString();
 
-    validateFields();
+    validateFields;
   },
 };

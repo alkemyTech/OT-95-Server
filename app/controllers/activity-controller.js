@@ -1,12 +1,12 @@
-const statusCode = require("../constants/constants");
-const responseMessage = require("../constants/messages");
+const statusCode = require('../constants/constants');
+const responseMessage = require('../constants/messages');
 const {
   create,
   getAll,
   getById,
   remove,
   update,
-} = require("../services/activity-service");
+} = require('../services/activity-service');
 
 module.exports = {
   getAll: async (req, res) => {

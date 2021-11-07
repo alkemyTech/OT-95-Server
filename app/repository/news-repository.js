@@ -18,6 +18,6 @@ module.exports = {
     content
   }, { where: { id } }),
 
-  destroy: id => Testimonial.destroy({ where: { id } })
+  destroy: id => News.destroy({ where: { id } })
 
 };

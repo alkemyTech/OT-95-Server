@@ -8,7 +8,13 @@ module.exports = {
 
   create: (name, image, content) => testimonilasRepository.create(name, image, content),
 
-  update: (name, image, content) => testimonilasRepository.update(name, image, content),
+  update: async (id, data) => {
+    try {
+      return await testimonilasRepository.update(id, data);
+    } catch (err) {
+      return null;
+    }
+  },
 
   destroy: id => testimonilasRepository.destroy(id)
 

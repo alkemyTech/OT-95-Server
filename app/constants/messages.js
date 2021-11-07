@@ -9,6 +9,8 @@ const RESPONSE_OK_NO_CONTENT = 'No Content';
 const REQUEST_TIMEOUT = 'Request timeout';
 const UNAUTHORIZED_USER_CREDENTIALS = 'Unauthorized user credentials';
 const FORBIDDEN = 'Forbidden';
+const NO_TOKEN = 'There is no token';
+const INVALID_TOKEN = 'The token es invalid';
 
 // Organization messages
 const NAME_NOT_FOUND = 'The name is required';
@@ -35,5 +37,7 @@ module.exports = {
   EMAIL_NOT_FOUND,
   INVALID_EMAIL,
   WELCOME_TEXT_NOT_FOUND,
-  INVALID_PHONE
+  INVALID_PHONE,
+  NO_TOKEN,
+  INVALID_TOKEN
 };

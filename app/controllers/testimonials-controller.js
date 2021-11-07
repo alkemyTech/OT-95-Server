@@ -49,12 +49,10 @@ module.exports = {
 
   update: async (req, res) => {
     try {
-      const { name, image, content } = req.body;
-      const testimonial = await testimonialsService.getById(req.params.id);
+      const testimonial = await testimonialsService.update(req.params.id, req.body);
 
       if (testimonial) {
-        await testimonialsService.update(req.params.id, name, image, content);
-        res.status(codeStatus.RESPONSE_OK).json(messages.RESPONSE_OK);
+        res.status(codeStatus.RESPONSE_OK).json(testimonial);
       } else {
         res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.BAD_REQUEST_ERROR);
       }

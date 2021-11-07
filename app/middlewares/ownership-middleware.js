@@ -1,16 +1,13 @@
-const validateJwt = require('./validate-jwt');
-const isAdmin = require('./isAdmin');
-const codeStatus = require('../constants/constants');
-const messages = require('../constants/messages');
+const { isAdmin } = require('./isAdmin');
 
 module.exports = {
-  isOwnerShip: async (req, res, next) => {
-    try {
-      const id = req.params.id;
-      validateJwt(req, res);
+
+  isOwnerShip: (req, res, next) => {
+    if (+req.params.id === req.user.uid) {
       next();
-    } catch (err) {
-      res.status(codeStatus.NOK_USER_CREDENTIALS).json(messages.UNAUTHORIZED_USER_CREDENTIALS);
+    } else {
+      isAdmin(req, res, next);
     }
   }
+
 };

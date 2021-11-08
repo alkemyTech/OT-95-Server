@@ -18,7 +18,7 @@ const decodeTokn = (req = request, res = response) => {
         msg: messages.INVALID_TOKEN
       });
     }
-    return res.status(200).send(decoded);
+    return res.status(constants.RESPONSE_OK).send(decoded);
   });
 };
 

@@ -5,58 +5,50 @@ const messages = require('../constants/messages');
 const controller = {
   getAll: async (req, res) => {
     try {
-      const users = await userService.getAll();
-      res.json({
-        data: users.length > 0 ? users : messages.RESPONSE_OK_NO_CONTENT
-      });
+      const users = await userService.getAll(req, res);
+      res.json(users);
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
   },
   getOne: async (req, res) => {
     try {
-      const { id } = req.params;
-      const user = await userService.getOne(id);
-      res.json({
-        data: user ? user : messages.RESPONSE_OK_NO_CONTENT
-      });
+      const user = await userService.getOne(req, res)
+      res.json(user);
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
   },
   createUser: async (req, res) => {
     try {
-      const data = req.body;
-      const user = await userService.create(data);
-      res.json({
-        data: user ? user : messages.RESPONSE_OK_NO_CONTENT
-      });
+      const user = await userService.create(req, res);
+      res.json(user);
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
   },
   deleteUser: async (req, res) => {
     try {
-      const { id } = req.params;
-      const user = await userService.delete(id);
-      res.json({
-        data: user ? user : messages.RESPONSE_OK_NO_CONTENT
-      });
+      const user = await userService.delete(req, res);
+      res.json(user);
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
   },
   updateUser: async (req, res) => {
     try {
-      const { id } = req.params;
-      const data = req.body;
-      const user = await userService.update(id, data);
-      res.json({
-        data: user ? user : messages.RESPONSE_OK_NO_CONTENT
-      });
+      const user = await userService.update(req, res);
+      res.json(user);
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
-      
+    }
+  },
+  login: async (req, res) => {
+    try {
+      const user = await userService.login(req, res);
+      res.json(user);
+    } catch (error) {
+      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
   }
 };

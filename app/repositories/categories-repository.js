@@ -2,7 +2,7 @@ const { Categories } = require('../models/index');
 
 module.exports = {
   getCategories: async () => {
-    return Categories.findAll();
+    return Categories.findAll({ attributes: ['name'] });
   },
 
   getCategory: async (id) => {

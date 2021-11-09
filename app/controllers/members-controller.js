@@ -1,40 +1,24 @@
-const {
-    getMemberById,
-    getMembers,
-    createMember,
-    updateMember,
-    destroyMember,
-} = require('../services/members-service');
-
-const getById = async (req, res) => {
-  const member = await getMemberById(req.params.id);
-  return res.status(member.status).json(member.response);
-};
-
-const getAll = async (req, res) => {
-  const members = await getMembers();
-  return res.status(members.status).json(members.response);
-};
-
-const create = async (req, res) => {
-  const member = await createMember(req.body);
-  return res.status(member.status).json(member.response);
-};
-
-const update = async (req, res) => {
-  const member = await updateMember(req.params.id, req.body);
-  return res.status(member.status).json(member.response);
-};
-
-const destroy = async (req, res) => {
-  const member = await destroyMember(req.params.id);
-  return res.status(member.status).json(member.response);
-};
+const membersService = require('../services/members-service');
 
 module.exports = {
-  getById,
-  getAll,
-  create,
-  update,
-  destroy,
+  getById: async (req, res) => {
+    const member = await membersService.getById(req.params.id);
+    return res.status(member.status).json(member.response);
+  },
+  getAll: async (req, res) => {
+    const members = await membersService.getAll();
+    return res.status(members.status).json(members.response);
+  },
+  create: async (req, res) => {
+    const member = await membersService.create(req.body);
+    return res.status(member.status).json(member.response);
+  },
+  update: async (req, res) => {
+    const member = await membersService.update(req.params.id, req.body);
+    return res.status(member.status).json(member.response);
+  },
+  destroy: async (req, res) => {
+    const member = await membersService.destroy(req.params.id);
+    return res.status(member.status).json(member.response);
+  }
 };

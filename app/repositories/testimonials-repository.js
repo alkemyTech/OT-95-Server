@@ -6,17 +6,13 @@ module.exports = {
 
   getById: id => Testimonial.findByPk(id),
 
-  create: (name, image, content) => Testimonial.create({
-    name,
-    image,
-    content
-  }),
+  create: (name, image, content) => Testimonial.create({ name, image, content }),
 
-  update: (id, name, image, content) => Testimonial.update({
-    name,
-    image,
-    content
-  }, { where: { id } }),
+  update: async (id, data) => {
+    const testimonial = await Testimonial.findByPk(id);
+    await testimonial.update(data);
+    return testimonial;
+  },
 
   destroy: id => Testimonial.destroy({ where: { id } })
 

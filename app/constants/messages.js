@@ -11,6 +11,7 @@ const UNAUTHORIZED_USER_CREDENTIALS = 'Unauthorized user credentials';
 const FORBIDDEN = 'Forbidden';
 const NO_TOKEN = 'There is no token';
 const INVALID_TOKEN = 'The token es invalid';
+const TOKEN_NOT_GENERATED = 'The token couldnt be generated';
 
 // Organization messages
 const NAME_NOT_FOUND = 'The name is required';
@@ -39,5 +40,6 @@ module.exports = {
   WELCOME_TEXT_NOT_FOUND,
   INVALID_PHONE,
   NO_TOKEN,
-  INVALID_TOKEN
+  INVALID_TOKEN,
+  TOKEN_NOT_GENERATED
 };

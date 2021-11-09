@@ -11,6 +11,15 @@ const UNAUTHORIZED_USER_CREDENTIALS = 'Unauthorized user credentials';
 const FORBIDDEN = 'Forbidden';
 const NO_TOKEN = 'There is no token';
 const INVALID_TOKEN = 'The token es invalid';
+const TOKEN_NOT_GENERATED = 'The token couldnt be generated';
+
+// Organization messages
+const NAME_NOT_FOUND = 'The name is required';
+const IMAGE_NOT_FOUND = 'The image is required';
+const WELCOME_TEXT_NOT_FOUND = 'The welcomeText is required';
+const EMAIL_NOT_FOUND = 'The image is required';
+const INVALID_EMAIL = 'The email entered is not valid';
+const INVALID_PHONE = 'The phone entered is not valid';
 
 module.exports = {
   NOT_FOUND_ERROR,
@@ -24,6 +33,13 @@ module.exports = {
   REQUEST_TIMEOUT,
   UNAUTHORIZED_USER_CREDENTIALS,
   FORBIDDEN,
+  NAME_NOT_FOUND,
+  IMAGE_NOT_FOUND,
+  EMAIL_NOT_FOUND,
+  INVALID_EMAIL,
+  WELCOME_TEXT_NOT_FOUND,
+  INVALID_PHONE,
   NO_TOKEN,
-  INVALID_TOKEN
+  INVALID_TOKEN,
+  TOKEN_NOT_GENERATED
 };

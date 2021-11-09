@@ -1,5 +1,5 @@
-const responseMessage = require('../constants/constants');
-const statusCode = require('../constants/messages');
+const statusCode = require('../constants/constants');
+const responseMessage = require('../constants/messages');
 const {
   create,
   getAll,
@@ -68,9 +68,7 @@ module.exports = {
       const response = await update(id, activity);
 
       response
-        ? res
-            .status(statusCode.RESPONSE_OK_NO_CONTENT)
-            .json(responseMessage.RESPONSE_OK_NO_CONTENT)
+        ? res.status(statusCode.RESPONSE_OK_UPDATED).json(response)
         : res
             .status(statusCode.NOT_FOUND_ERROR)
             .json(responseMessage.NOT_FOUND_ERROR);

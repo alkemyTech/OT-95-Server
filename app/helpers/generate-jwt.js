@@ -1,14 +1,15 @@
 const jwt = require('jsonwebtoken');
 const constants = require('../constants/constants');
+const messages = require('../constants/messages');
 
-const generateJwt = (uid = '', roleId = '') => {
+const generateJwt = (user) => {
   return new Promise((resolve, reject) => {
-    const payload = { uid, roleId };
+    const payload = { user };
     jwt.sign(payload, constants.SECRETORPRIVATEKEY, {
       expiresIn: 60 * 60
     }, (err, token) => {
       if (err) {
-        reject('No se pudo generar el token');
+        reject(messages.TOKEN_NOT_GENERATED);
       } else {
         resolve(token);
       }
@@ -19,4 +20,4 @@ const generateJwt = (uid = '', roleId = '') => {
 
 module.exports = {
   generateJwt
-}
+};

@@ -10,6 +10,8 @@ const validator = require('../helpers/db-validator');
 
 const { check } = require('express-validator');
 
+const decodeTokn = require('../middlewares/decode-token');
+
 
 router.post('/register', [
   // Falta validar si el email ya existe, estimo que será en otro ticket!
@@ -27,5 +29,5 @@ router.post('/login', [
   validateFields
 ], usersController.login);
 
-
+router.get('/me', decodeTokn);
 module.exports = router;

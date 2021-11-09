@@ -19,7 +19,7 @@ router.post('/', usersController.createUser);
 
 router.delete('/:id', usersController.deleteUser);
 
-router.put('/:id', usersController.updateUser);
+router.patch('/:id', usersController.updateUser);
 
 router.get('/users', validateJwt, isAdmin, usersController.getAll);
 

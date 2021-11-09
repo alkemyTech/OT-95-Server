@@ -24,7 +24,8 @@ module.exports = {
       },
       email: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       welcomeText: {
         allowNull: false,
@@ -32,6 +33,9 @@ module.exports = {
       },
       aboutUsText: {
         type: Sequelize.TEXT
+      },
+      deletedAt: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,

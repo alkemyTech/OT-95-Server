@@ -7,6 +7,10 @@ module.exports = {
 
   getById: id => Organization.findByPk(id),
 
+  getPublicData: () => Organization.findAll({
+    attributes: ['name', 'image', 'phone', 'address']
+  }),
+
   create: organizationData => Organization.create(organizationData),
 
   update: (id, organizationData) => Organization.update(

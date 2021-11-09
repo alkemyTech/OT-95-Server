@@ -84,6 +84,7 @@ module.exports = {
         }
       }
     } catch (error) {
+      // console.log(error);
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
   }

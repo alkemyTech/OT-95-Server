@@ -2,9 +2,8 @@ const UsersRepository = require('../repositories/users-repository');
 const codeStatus = require('../constants/constants');
 const messages = require('../constants/messages');
 const bcrypt = require('bcrypt');
+const usersRepository = require('../repositories/users-repository');
 const { generateJwt } = require('../helpers/generate-jwt');
-const { generateTemplate } = require('../helpers/generateTemplate');
-const { sendEmail } = require('../services/email-service');
 
 
 module.exports = {
@@ -35,8 +34,6 @@ module.exports = {
       const saltRounds = 10;
       data.password = bcrypt.hashSync(data.password, saltRounds);
       const user = await UsersRepository.create(data);
-      const html = await generateTemplate(1);
-      await sendEmail(user.email, html);
       res.json({
         data: user || messages.RESPONSE_OK_NO_CONTENT
       });
@@ -72,7 +69,7 @@ module.exports = {
   login: async (req, res) => {
     try {
       const { email, password } = req.body;
-      const user = await UsersRepository.getUserWithEmail(email);
+      const user = await usersRepository.getUserWithEmail(email);
       if (!user) {
         res.status(codeStatus.NOT_FOUND_ERROR).json({
           ok: false

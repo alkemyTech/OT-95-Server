@@ -33,6 +33,10 @@ module.exports = {
       aboutUsText: {
         type: Sequelize.TEXT
       },
+      deletedAt: {
+        allowNull: true,
+        type: Sequelize.DATE
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

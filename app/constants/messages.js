@@ -21,6 +21,9 @@ const EMAIL_NOT_FOUND = 'The image is required';
 const INVALID_EMAIL = 'The email entered is not valid';
 const INVALID_PHONE = 'The phone entered is not valid';
 
+// user messages
+const EMAIL_REPEAT = 'this email is already in use';
+
 module.exports = {
   NOT_FOUND_ERROR,
   BAD_REQUEST_ERROR,
@@ -41,5 +44,6 @@ module.exports = {
   INVALID_PHONE,
   NO_TOKEN,
   INVALID_TOKEN,
-  TOKEN_NOT_GENERATED
+  TOKEN_NOT_GENERATED,
+  EMAIL_REPEAT
 };

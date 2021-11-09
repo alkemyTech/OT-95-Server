@@ -60,9 +60,11 @@ module.exports = {
       const { id } = req.params;
       const data = req.body;
       const user = await UsersRepository.update(id, data);
-      res.json({
-        data: user ? messages.RESPONSE_OK : messages.RESPONSE_OK_NO_CONTENT
-      });
+      if (user[0] === 0) {
+        res.status(codeStatus.NOT_FOUND_ERROR).json({ message: messages.RESPONSE_OK_NO_CONTENT });
+      } else {
+        res.status(codeStatus.RESPONSE_OK).json({ user });
+      }
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
@@ -78,7 +80,7 @@ module.exports = {
       } else {
         const success = bcrypt.compareSync(password, user.password);
         if (success) {
-          const token = await generateJwt(user.id, user.roleId);
+          const token = await generateJwt(user);
           res.status(codeStatus.RESPONSE_OK).json({ user, token });
         } else {
           res.status(codeStatus.RESPONSE_OK).json(messages.RESPONSE_OK_NO_CONTENT);

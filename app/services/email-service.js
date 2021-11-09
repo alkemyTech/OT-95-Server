@@ -15,7 +15,7 @@ module.exports = {
       };
 
       await sengrid.send(msg);
-      console.log({ msg: 'Email sent successfully' });
+      console.log('Email sent successfully');
     } catch (err) {
       console.log(err);
     }

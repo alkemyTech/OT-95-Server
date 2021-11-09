@@ -7,7 +7,13 @@ module.exports = {
 
   create: async activity => Activity.create(activity),
 
-  update: async (id, activity) => Activity.update(activity, { where: { id } }),
+  update: async (id, activity) => {
+    const response = await Activity.update(activity, {
+      where: { id }
+    });
+    if (response[0] === 0) return null;
+    return Activity.findByPk(id);
+  },
 
   remove: async id => Activity.destroy({ where: { id } }),
 };

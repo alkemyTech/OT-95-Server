@@ -43,7 +43,7 @@ describe('Testing the get one users: ', () => {
 describe('Insert a user: ', () => {
   it('should insert a user', (done) => {
     chai.request(url)
-      .post('/users')
+      .post('/auth/register')
       .send({
         firstName: 'Example',
         lastName: 'Example',
@@ -60,14 +60,14 @@ describe('Insert a user: ', () => {
 describe('Insert a user without an obligatory param: ', () => {
   it('should receive an error', (done) => {
     chai.request(url)
-      .post('/users')
+      .post('/auth/register')
       .send({
         lastName: 'Example',
         password: '123456',
         email: 'example@example.com'
       })
       .end((err, res) => {
-        expect(res).to.have.status(500);
+        expect(res).to.have.status(400);
         done();
       });
   });

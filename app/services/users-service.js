@@ -33,13 +33,20 @@ module.exports = {
     try {
       const data = req.body;
       const saltRounds = 10;
-      data.password = bcrypt.hashSync(data.password, saltRounds);
-      const user = await UsersRepository.create(data);
-      const html = await generateTemplate(1);
-      await sendEmail(user.email, html);
-      res.json({
-        data: user || messages.RESPONSE_OK_NO_CONTENT
-      });
+      const userRepeat = await UsersRepository.getUserWithEmail(data.email);
+      if (userRepeat) {
+        res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.EMAIL_REPEAT);
+      } else {
+        data.password = bcrypt.hashSync(data.password, saltRounds);
+        const user = await UsersRepository.create(data);
+        const html = await generateTemplate(1);
+        await sendEmail(user.email, html);
+        const token = await generateJwt(user);
+        res.status(codeStatus.RESPONSE_OK_CREATED).json({
+          data: user || messages.RESPONSE_OK_NO_CONTENT,
+          token
+        });
+      }
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
@@ -83,7 +90,7 @@ module.exports = {
           const token = await generateJwt(user);
           res.status(codeStatus.RESPONSE_OK).json({ user, token });
         } else {
-          res.status(codeStatus.RESPONSE_OK).json(messages.RESPONSE_OK_NO_CONTENT);
+          res.status(codeStatus.NOK_USER_CREDENTIALS).json(messages.UNAUTHORIZED_USER_CREDENTIALS);
         }
       }
     } catch (error) {

@@ -35,7 +35,6 @@ module.exports = {
         type: Sequelize.TEXT
       },
       deletedAt: {
-        allowNull: true,
         type: Sequelize.DATE
       },
       createdAt: {

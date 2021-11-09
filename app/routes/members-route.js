@@ -1,6 +1,6 @@
 const express = require('express');
 const membersController = require('../controllers/members-controller');
-const { isAdmin } = require('../middlewares/isAdmin');
+const isAdmin = require('../middlewares/isAdmin');
 const { validateCreation, existMember } = require('../middlewares/members-middlewares');
 const validateJwt = require('../middlewares/validate-jwt');
 

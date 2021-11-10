@@ -13,4 +13,6 @@ router.post('/', validateJWT, isAdmin, validateCreate, categoriesController.crea
 
 router.put('/:id', validateJWT, isAdmin, validateUpdate, categoriesController.update);
 
+router.delete('/:id', validateJWT, isAdmin, categoriesController.remove);
+
 module.exports = router;

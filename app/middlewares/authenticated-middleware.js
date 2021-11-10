@@ -1,5 +1,6 @@
-const messages = require('../constants/messages');
 const statusCode = require('../constants/constants');
+const messages = require('../constants/messages');
+
 
 module.exports = {
   isAuthenticated: (req, res) => {

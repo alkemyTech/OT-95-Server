@@ -2,6 +2,7 @@ const constants = require('../constants/constants');
 const messages = require('../constants/messages');
 const { response, request } = require('express');
 const jwt = require('jsonwebtoken');
+const { secretKey } = require('../config/config').JWT;
 
 const decodeTokn = (req = request, res = response) => {
   const token = req.header('Authorization');
@@ -11,7 +12,7 @@ const decodeTokn = (req = request, res = response) => {
     });
   }
 
-  jwt.verify(token, constants.SECRETORPRIVATEKEY, (err, decoded) => {
+  jwt.verify(token, secretKey, (err, decoded) => {
     if (err) {
       return res.status(constants.NOK_USER_CREDENTIALS).json({
         err,

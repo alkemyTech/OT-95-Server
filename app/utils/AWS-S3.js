@@ -17,13 +17,7 @@ module.exports = {
       ACL: 'public-read',
       ContentType: mimetype,
     };
-    return S3.upload(params, (err, data) => {
-      if (err) {
-        console.log('Error', err);
-        return err;
-      }
-      return data;
-    });
+    return S3.upload(params).promise();
   },
 
   download: (fileName) => {
@@ -31,12 +25,6 @@ module.exports = {
       Bucket: process.env.S3_BUCKET,
       Key: fileName,
     };
-    return S3.getObject(params, (err, data) => {
-      if (err) {
-        console.log('Error', err);
-        return err;
-      }
-      return data;
-    });
+    return S3.getObject(params).promise();
   },
 };

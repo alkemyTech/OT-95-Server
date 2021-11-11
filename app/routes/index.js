@@ -8,6 +8,7 @@ const testimoniaslRouter = require('./testimonials-route');
 const activityRouter = require('./activity-routes');
 const authRouter = require('./auth');
 const membersRouter = require('./members-route');
+const contactsRouter = require('./contact-routes');
 const commentsRouter = require('./comments-routes');
 const newsRouter = require('./news-router');
 
@@ -24,6 +25,8 @@ router.use('/testimonials', testimoniaslRouter);
 router.use('/activities', activityRouter);
 
 router.use('/members', membersRouter);
+
+router.use('/contacts', contactsRouter);
 
 router.use('/news', newsRouter);
 

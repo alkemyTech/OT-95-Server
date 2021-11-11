@@ -23,7 +23,7 @@ module.exports = {
     }
     return next();
   },
-  validateCreate: (req, res, next) => {    
+  validateCreate: async (req, res, next) => {    
     await check('name')
     .isString().bail()
     .notEmpty().run(req);

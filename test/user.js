@@ -61,6 +61,14 @@ describe('Insert a user: ', () => {
         done();
       });
   });
+  it('should delete a user', (done) => {
+    chai.request(url)
+      .del('/users')
+      .end((error, res) => {
+        expect(res).to.have.status(200);
+        done();
+      });
+  });
 });
 
 describe('Insert a user without an obligatory param: ', () => {

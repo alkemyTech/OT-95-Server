@@ -22,10 +22,6 @@ router.delete('/:id', usersController.deleteUser);
 
 router.patch('/:id', usersController.updateUser);
 
-<<<<<<< HEAD
 //router.get('/users', validateJwt, isAdmin, usersController.getAll);
-=======
-router.get('/', [validateJwt, isAdmin], usersController.getAll);
->>>>>>> dev
 
 module.exports = router;

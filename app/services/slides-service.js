@@ -2,6 +2,18 @@ const slidesRepository = require('../repositories/slides-repository');
 const status = require('../constants/constants');
 const messages = require('../constants/messages');
 const { uploadFile } = require('./uploadFile');
+const { saveTempImage } = require('../helpers/saveTempImage');
+
+const getSlides = async () => {
+  let slides = await slidesRepository.getAll();
+  slides = slides.map((slide) => {
+    return {
+      img: slide.imageUrl,
+      order: slide.order
+    };
+  });
+  return slides;
+};
 
 module.exports = {
   getById: async (id) => {
@@ -17,29 +29,26 @@ module.exports = {
   },
   getAll: async () => {
     try {
-      const slides = await slidesRepository.getAll();
+      const slides = await getSlides();
       if (slides.length === 0) {
         return { status: status.NOT_FOUND_ERROR, response: messages.NOT_FOUND_ERROR };
       }
-      return { status: status.RESPONSE_OK, response: slides };
+      return {
+        status: status.RESPONSE_OK,
+        response: slides
+      };
     } catch (error) {
       return { status: status.INTERNAL_ERROR, response: messages.INTERNAL_ERROR };
     }
   },
-  create: async (file) => {
+  create: async (data) => {
     try {
-      const uploadPath = __dirname + '../temp/' + file.name;
-      file.mv(uploadPath, function(err) {
-        if (err) {
-          return resizeBy.status(500).json(err);
-        }
-      });
-      // const fileName = await uploadFile({ mimetype: file.mimetype, path: `app/temp/${file.name}` });
-      // console.log(fileName);
-      // await slidesRepository.create(data);
-      return { status: status.RESPONSE_OK_CREATED, response: 'a' };
+      const { imageUrl, text, order, organizationId } = data;
+      const uploadPath = await saveTempImage(imageUrl);
+      const location = await uploadFile({ mimetype: 'image/jpg', path: uploadPath });
+      await slidesRepository.create({ imageUrl: location, text, order, organizationId });
+      return { status: status.RESPONSE_OK_CREATED, response: messages.RESPONSE_OK_CREATED };
     } catch (error) {
-      console.log(error);
       return { status: status.INTERNAL_ERROR, response: messages.INTERNAL_ERROR };
     }
   },

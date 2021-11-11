@@ -16,8 +16,7 @@ module.exports = {
         allowNull: false
       },
       order: {
-        type: Sequelize.INTEGER,
-        allowNull: false
+        type: Sequelize.INTEGER
       },
       organizationId: {
         type: Sequelize.INTEGER,

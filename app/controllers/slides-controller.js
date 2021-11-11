@@ -10,7 +10,7 @@ module.exports = {
     return res.status(slides.status).json(slides.response);
   },
   create: async (req, res) => {
-    const slide = await slidesService.create(req.files.file);
+    const slide = await slidesService.create(req.body);
     return res.status(slide.status).json(slide.response);
   },
   update: async (req, res) => {

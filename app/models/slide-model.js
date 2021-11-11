@@ -23,8 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     order: {
-      type: DataTypes.INTEGER,
-      allowNull: false
+      type: DataTypes.INTEGER
     },
     organizationId: {
       type: DataTypes.INTEGER,

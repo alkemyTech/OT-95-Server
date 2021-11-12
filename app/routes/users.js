@@ -9,9 +9,10 @@ const { isAdmin } = require('../middlewares/isAdmin');
 const { check } = require('express-validator');
 
 /* GET users listing. */
-// router.get('/', [
-  // validateJwt
-// ], usersController.getAll);
+router.get('/'/*, [
+  validateJwt,
+]*/,
+usersController.getAll);
 
 router.get('/:id', usersController.getOne);
 
@@ -21,6 +22,6 @@ router.delete('/:id', usersController.deleteUser);
 
 router.patch('/:id', usersController.updateUser);
 
-router.get('/', [validateJwt, isAdmin], usersController.getAll);
+//router.get('/users', validateJwt, isAdmin, usersController.getAll);
 
 module.exports = router;

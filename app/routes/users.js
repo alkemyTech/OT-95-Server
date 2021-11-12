@@ -9,9 +9,9 @@ const { isAdmin } = require('../middlewares/isAdmin');
 const { check } = require('express-validator');
 
 /* GET users listing. */
-router.get('/'/*, [
+router.get('/', [
   validateJwt,
-]*/,
+],
 usersController.getAll);
 
 router.get('/:id', usersController.getOne);

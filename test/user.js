@@ -8,7 +8,8 @@ chai.use(chaiHttp);
 const url = 'http://localhost:3000/api';
 
 
-describe('Get all users: ', () => {
+
+describe('GET ', () => {
   it('Should get all users', (done) => {
     chai.request(url)
       .get('/users')
@@ -24,9 +25,6 @@ describe('Get all users: ', () => {
         done();
       });
   });
-});
-
-describe('Testing the get one users: ', () => {
   it('Should get the user with id 59', (done) => {
     chai.request(url)
       .get('/users/59')
@@ -36,9 +34,9 @@ describe('Testing the get one users: ', () => {
         done();
       });
   });
-  it('Verify that the user 9999 doesnt exist', (done) => {
+  it('Verify that the user 99999 doesnt exist', (done) => {
     chai.request(url)
-      .get('/users/9999')
+      .get('/users/99999')
       .end((err, res) => {
         expect(res).to.have.status(404);
         done();
@@ -46,33 +44,23 @@ describe('Testing the get one users: ', () => {
   });
 });
 
-describe('Insert a user: ', () => {
-  it('should insert a user', (done) => {
+
+describe('POST ', () => {
+  it('Should insert a user', (done) => {
+    emailNumber = Math.floor(Math.random() * 10000);
     chai.request(url)
       .post('/auth/register')
       .send({
         firstName: 'Example',
         lastName: 'Example',
         password: '123456',
-        email: 'example@example.com'
+        email: `example${emailNumber}@gmail.com`
       })
       .end((error, res) => {
-        console.log(error);
         expect(res).to.have.status(201);
         done();
       });
   });
-  /*it('should delete a user', (done) => {
-    chai.request(url)
-      .del('/users')
-      .end((error, res) => {
-        expect(res).to.have.status(200);
-        done();
-      });
-  });*/
-});
-
-describe('Insert a user without an obligatory param: ', () => {
   it('should receive an error', (done) => {
     chai.request(url)
       .post('/auth/register')

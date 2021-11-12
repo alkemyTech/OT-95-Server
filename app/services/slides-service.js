@@ -41,12 +41,13 @@ module.exports = {
       return { status: status.INTERNAL_ERROR, response: messages.INTERNAL_ERROR };
     }
   },
-  create: async (data) => {
+  create: async (body) => {
     try {
-      const { imageUrl, text, order, organizationId } = data;
+      const { imageUrl, ...data } = body;
       const uploadPath = await saveTempImage(imageUrl);
       const location = await uploadFile({ mimetype: 'image/jpg', path: uploadPath });
-      await slidesRepository.create({ imageUrl: location, text, order, organizationId });
+      data.imageUrl = location;
+      await slidesRepository.create(data);
       return { status: status.RESPONSE_OK_CREATED, response: messages.RESPONSE_OK_CREATED };
     } catch (error) {
       return { status: status.INTERNAL_ERROR, response: messages.INTERNAL_ERROR };

@@ -6,7 +6,12 @@ module.exports = {
     if (!img) {
       return new Error('No image uploaded');
     }
-    const uploadPath = path.join(__dirname, '../temp/', 'tempfile.jpg');
+    const tempFolder = path.join(__dirname, '../temp');
+
+    if (!fs.existsSync(tempFolder)) {
+      fs.mkdirSync(tempFolder);
+    }
+    const uploadPath = path.join(tempFolder, 'tempfile.jpg');
     fs.writeFileSync(uploadPath, img, 'base64');
 
     return uploadPath;

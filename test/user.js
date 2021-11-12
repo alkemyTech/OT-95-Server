@@ -6,17 +6,28 @@ const expect = require('chai').expect;
 chai.use(chaiHttp);
 
 const url = 'http://localhost:3000/api';
-
-
+//let token = '123456';
 
 describe('GET ', () => {
+  let token;
+  it('Should get a token', (done) => {
+    chai.request(url)
+      .post('/auth/login')
+      .send({ email: 'ramiro@boza.com', password: '123456' })
+      .end((error, res) => {
+        token = res.body.token;
+      });
+      done();
+  });
+
   it('Should get all users', (done) => {
     chai.request(url)
       .get('/users')
+      .set({ 'Authorization' : token })
       .end((err, res) => {
         const users = res.body.data;
         users.forEach((user) => {
-          expect(user.fisrtName).to.be.a.string;
+          expect(user.firstName).to.be.a.string;
           expect(user.lastName).to.be.a.string;
           expect(user.email).to.be.a.string;
         });

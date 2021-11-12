@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/', validateCreation, membersController.create);
 
-router.get('/', [validateJwt, isAdmin], membersController.getAll);
+router.get('/', validateJwt, isAdmin, membersController.getAll);
 
 router.put('/:id', existMember, membersController.update);
 

@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "test": "mocha --timeout 10000"
+    "db": "sequelize db:drop && sequelize db:create && sequelize db:migrate && sequelize db:seed:all"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.6.0",
@@ -26,6 +27,7 @@
     "eslint-watch": "^3.1.4",
     "express": "~4.16.1",
     "express-validator": "^6.13.0",
+    "faker": "^5.5.3",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
     "morgan": "~1.9.1",

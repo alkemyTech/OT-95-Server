@@ -9,9 +9,7 @@ module.exports = {
     const organization = await organizationRepository.getById(organizationId);
     const templatePath = path.resolve(__dirname, '..', 'views', 'emailTemplate.ejs');
     const template = ejs.compile(fs.readFileSync(templatePath, 'utf-8'));
-
     const html = template({ title: `Bienvenido a ${organization.name}`, text: organization.aboutUsText, phone: organization.phone, address: organization.address });
-
     return html;
   }
 

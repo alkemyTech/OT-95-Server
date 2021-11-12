@@ -26,6 +26,7 @@ module.exports = {
 
   create: async (req, res) => {
     try {
+      req.body.image = req.file;
       await create(req.body);
       return res.status(statusResponses.RESPONSE_OK_CREATED).json(messages.RESPONSE_OK_CREATED);
     } catch (error) {
@@ -35,7 +36,8 @@ module.exports = {
 
   update: async (req, res) => {
     try {
-      const [response] = await update(req.params.id, req.body);
+      req.body.image = req.file;
+      const response = await update(req.params.id, req.body);
       if (response === 0) {
         return res.status(statusResponses.BAD_REQUEST_ERROR).json(messages.BAD_REQUEST_ERROR);
       }

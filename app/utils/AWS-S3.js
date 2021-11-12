@@ -11,7 +11,7 @@ module.exports = {
 
   upload: (body, fileName, mimetype) => {
     const params = {
-      Bucket: process.env.AWS_S3_BUCKET,
+      Bucket: config.bucket,
       Key: fileName,
       Body: body,
       ACL: 'public-read',

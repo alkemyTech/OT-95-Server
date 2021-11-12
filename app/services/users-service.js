@@ -41,12 +41,10 @@ module.exports = {
       if (userRepeat) {
         res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.EMAIL_REPEAT);
       } else {
-        console.log('entro aca')
         data.password = bcrypt.hashSync(data.password, saltRounds);
         const user = await UsersRepository.create(data);
         const html = await generateTemplate(1);
         await sendEmail(user.email, html);
-        console.log(user);
         const token = await generateJwt(user);
         res.status(codeStatus.RESPONSE_OK_CREATED).json({
           data: user || messages.RESPONSE_OK_NO_CONTENT,

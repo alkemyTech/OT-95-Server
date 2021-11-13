@@ -76,6 +76,20 @@ module.exports = {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
   },
+  softDelete: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const user = await UsersRepository.softDelete(id);
+      console.log(user);
+      if (user[0] === 0) {
+        res.status(codeStatus.NOT_FOUND_ERROR).json({ message: messages.RESPONSE_OK_NO_CONTENT });
+      } else {
+        res.status(codeStatus.RESPONSE_OK).json(messages.RESPONSE_OK);
+      }
+    } catch (error) {
+      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
+    }
+  },
   login: async (req, res) => {
     try {
       const { email, password } = req.body;

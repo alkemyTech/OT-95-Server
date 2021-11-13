@@ -23,6 +23,7 @@ const INVALID_PHONE = 'The phone entered is not valid';
 
 // user messages
 const EMAIL_REPEAT = 'this email is already in use';
+const NO_MATCH_USER = 'You can only eliminate yourself';
 
 module.exports = {
   NOT_FOUND_ERROR,
@@ -45,5 +46,6 @@ module.exports = {
   NO_TOKEN,
   INVALID_TOKEN,
   TOKEN_NOT_GENERATED,
-  EMAIL_REPEAT
+  EMAIL_REPEAT,
+  NO_MATCH_USER
 };

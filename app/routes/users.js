@@ -7,6 +7,7 @@ const validator = require('../helpers/db-validator');
 const validateJwt = require('../middlewares/validate-jwt');
 const { isAdmin } = require('../middlewares/isAdmin');
 const { check } = require('express-validator');
+const { matchUser } = require('../middlewares/matchUser');
 
 /* GET users listing. */
 // router.get('/', [
@@ -21,6 +22,8 @@ router.delete('/:id', usersController.deleteUser);
 
 router.patch('/:id', usersController.updateUser);
 
-router.get('/users', validateJwt, isAdmin, usersController.getAll);
+router.get('/users', [validateJwt, isAdmin], usersController.getAll);
+
+router.delete('/:id/down', matchUser, usersController.softDelete);
 
 module.exports = router;

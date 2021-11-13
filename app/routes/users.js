@@ -24,6 +24,6 @@ router.patch('/:id', usersController.updateUser);
 
 router.get('/users', [validateJwt, isAdmin], usersController.getAll);
 
-router.delete('/:id/down', matchUser, usersController.softDelete);
+router.delete('/:id/down', [validateJwt, matchUser], usersController.softDelete);
 
 module.exports = router;

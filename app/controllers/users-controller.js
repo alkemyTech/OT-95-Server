@@ -45,7 +45,7 @@ const controller = {
   },
   softDelete: async (req, res) => {    
     try {
-      const user = await userService.softDelete(req, res);
+      await userService.softDelete(req, res);
       res.status(codeStatus.RESPONSE_OK).json(messages.RESPONSE_OK);
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);

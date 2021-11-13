@@ -80,7 +80,6 @@ module.exports = {
     try {
       const { id } = req.params;
       const user = await UsersRepository.softDelete(id);
-      console.log(user);
       if (user[0] === 0) {
         res.status(codeStatus.NOT_FOUND_ERROR).json({ message: messages.RESPONSE_OK_NO_CONTENT });
       } else {

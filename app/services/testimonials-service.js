@@ -1,4 +1,5 @@
 const testimonilasRepository = require('../repositories/testimonials-repository');
+const { uploadFile } = require('./uploadFile');
 
 module.exports = {
 
@@ -6,10 +7,18 @@ module.exports = {
 
   getById: id => testimonilasRepository.getById(id),
 
-  create: (name, image, content) => testimonilasRepository.create(name, image, content),
+  create: async (data) => {
+    if (data.image) {
+      data.image =  await uploadFile(data.image);
+    }
+    return testimonilasRepository.create(data);
+  },
 
   update: async (id, data) => {
     try {
+      if (data.image) {
+        data.image =  await uploadFile(data.image);
+      }
       return await testimonilasRepository.update(id, data);
     } catch (err) {
       return null;

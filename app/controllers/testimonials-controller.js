@@ -34,8 +34,8 @@ module.exports = {
 
   create: async (req, res) => {
     try {
-      const { name, image, content } = req.body;
-      const testimonialCreated = await testimonialsService.create(name, image, content);
+      req.body.image = req.file;
+      const testimonialCreated = await testimonialsService.create(req.body);
 
       if (testimonialCreated) {
         res.status(codeStatus.RESPONSE_OK_CREATED).json(messages.RESPONSE_OK_CREATED);
@@ -49,6 +49,7 @@ module.exports = {
 
   update: async (req, res) => {
     try {
+      req.body.image = req.file;
       const testimonial = await testimonialsService.update(req.params.id, req.body);
 
       if (testimonial) {

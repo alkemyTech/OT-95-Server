@@ -1,11 +1,11 @@
+require('dotenv').config();
+
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 
 const basename = path.basename(__filename);
-//const config = require('../config/config').development;
-const config = require('../config/config').test;
-
+const config = require('../config/config')[process.env.DB_TYPE];
 
 const db = {};
 

@@ -42,6 +42,7 @@ module.exports = {
         res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.EMAIL_REPEAT);
       } else {
         data.password = bcrypt.hashSync(data.password, saltRounds);
+        data.roleId = 2;
         const user = await UsersRepository.create(data);
         const html = await generateTemplate(1);
         await sendEmail(user.email, html);

@@ -10,7 +10,7 @@ const REQUEST_TIMEOUT = 'Request timeout';
 const UNAUTHORIZED_USER_CREDENTIALS = 'Unauthorized user credentials';
 const FORBIDDEN = 'Forbidden';
 const NO_TOKEN = 'There is no token';
-const INVALID_TOKEN = 'The token es invalid';
+const INVALID_TOKEN = 'The token is invalid';
 const TOKEN_NOT_GENERATED = 'The token couldnt be generated';
 
 // Organization messages

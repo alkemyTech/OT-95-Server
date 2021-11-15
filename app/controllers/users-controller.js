@@ -13,7 +13,7 @@ const controller = {
   },
   getOne: async (req, res) => {
     try {
-      const user = await userService.getOne(req, res)
+      const user = await userService.getOne(req, res);
       res.json(user);
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);

@@ -4,7 +4,7 @@ const newsService = require('../services/news-service');
 const userRepository = require('../repositories/users-repository');
 
 module.exports = {
-  validateComments: [
+  commentCreate: [
     check('user_id', 'required').notEmpty().bail().custom(async (value) => {
       const user = await userRepository.getOne(value);
       if (!user) {
@@ -20,6 +20,17 @@ module.exports = {
       }
       return null;
     }),
+    validateFields
+  ],
+
+  commentUpdate: [
+    check('user_id', 'required').notEmpty().bail().custom(async (value, { req }) => {
+      if (value !== req.user.id && req.user.roleId !== 1) {
+        return Promise.reject('comment is not yours');
+      }
+      return null;
+    }),
+    check('body', 'required').notEmpty(),
     validateFields
   ]
 };

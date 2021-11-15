@@ -24,5 +24,20 @@ module.exports = {
     } catch (err) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
+  },
+
+  update: async (req, res) => {
+    try {
+      const comment = await commentsService.getOne(req.params.id);
+      if (comment) {
+        await commentsService.update(req.params.id, req.body);
+        res.status(codeStatus.RESPONSE_OK_UPDATED).json(messages.RESPONSE_OK_UPDATED);
+      } else {
+        res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.BAD_REQUEST_ERROR);
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
+    }
   }
 };

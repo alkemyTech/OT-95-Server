@@ -19,7 +19,7 @@ const getAll = async (req, res) => {
 
 const getById = async (req, res) => {
   try {
-    const news = await newssService.getById(req.params.id);
+    const news = await newsService.getById(req.params.id);
 
     if (news) {
       res.status(codeStatus.RESPONSE_OK).json(news);
@@ -34,6 +34,7 @@ const getById = async (req, res) => {
 const create = async (req, res) => {
   try {
     const { name, image, content } = req.body;
+    
     const newsCreated = await newsService.create(name, image, content);
 
     if (newsCreated) {

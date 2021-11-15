@@ -7,9 +7,8 @@ const validateJwt = (req, res, next) => {
   let token = req.header('Authorization');
 
   if (token) {
-    token = (token.split('Bearer '))[1];
-
     try {
+      token = (token.split('Bearer '))[1];
       const { user } = jwt.verify(token, secretKey);
       req.user = user;
       next();

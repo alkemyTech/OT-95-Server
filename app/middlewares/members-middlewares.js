@@ -13,6 +13,7 @@ module.exports = {
   validateCreation: [
     check('name', 'Name is required').notEmpty(),
     check('name', 'Name must be a string').isString(),
+    check('image', 'Image is required').notEmpty(),
     validateFields
   ],
   existMember: [

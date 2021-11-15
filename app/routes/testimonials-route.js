@@ -12,7 +12,7 @@ router.route('/')
 
 router.route('/:id')
     .get(controller.getById)
-    .put(validateToken, isAdmin, controller.update)
+    .put(validateToken, isAdmin, validateTestimonials, controller.update)
     .delete(validateToken, isAdmin, controller.destroy);
 
 module.exports = router;

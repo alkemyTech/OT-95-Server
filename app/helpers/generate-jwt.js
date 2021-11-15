@@ -6,7 +6,7 @@ const generateJwt = (user) => {
   return new Promise((resolve, reject) => {
     const payload = { user };
     jwt.sign(payload, secretKey, {
-      expiresIn: 60 * 60
+      expiresIn: '24h'
     }, (err, token) => {
       if (err) {
         reject(messages.TOKEN_NOT_GENERATED);

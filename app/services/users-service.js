@@ -11,7 +11,11 @@ module.exports = {
   getAll: async (req, res) => {
     try {
       const users = await UsersRepository.getAll();
-      res.status(codeStatus.RESPONSE_OK).json({ data: users });
+      if (users.length > 0) {
+        res.status(codeStatus.RESPONSE_OK).json({ data: users });
+      } else {
+        res.status(codeStatus.NOT_FOUND_ERROR).json(messages.RESPONSE_OK_NO_CONTENT);
+      }
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
@@ -94,6 +98,7 @@ module.exports = {
         }
       }
     } catch (error) {
+      // console.log(error);
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
   }

@@ -1,29 +1,32 @@
 const chai = require('chai');
-
 const chaiHttp = require('chai-http');
 const expect = require('chai').expect;
+
 
 chai.use(chaiHttp);
 
 const url = 'http://localhost:3000/api';
-//let token = '123456';
+let token;
 
-describe('GET ', () => {
-  let token;
+
+describe('GET TOKEN ', () => {
   it('Should get a token', (done) => {
     chai.request(url)
       .post('/auth/login')
       .send({ email: 'ramiro@boza.com', password: '123456' })
       .end((error, res) => {
-        token = res.body.token;
+        token = res.body.token.trim();
       });
       done();
   });
+});
 
+
+describe('GET ', () => {
   it('Should get all users', (done) => {
     chai.request(url)
       .get('/users')
-      .set({ 'Authorization' : token })
+      .set('Authorization', token)
       .end((err, res) => {
         const users = res.body.data;
         users.forEach((user) => {
@@ -33,6 +36,16 @@ describe('GET ', () => {
         });
         expect(res).to.have.status(200);
         expect(users).to.be.an('array');
+        done();
+      });
+  });
+  it('Shouldnt get all users because unauthorized', (done) => {
+    chai.request(url)
+      .get('/users')
+      .set('Authorization', '123456')
+      .end((err, res) => {
+        const users = res.body.data;
+        expect(res).to.have.status(401);
         done();
       });
   });

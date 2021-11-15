@@ -21,7 +21,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      post_id: {
+      news_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {

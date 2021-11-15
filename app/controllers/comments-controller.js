@@ -15,5 +15,14 @@ module.exports = {
     } catch (err) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
+  },
+
+  create: async (req, res) => {
+    try {
+      await commentsService.create(req.body);
+      res.status(codeStatus.RESPONSE_OK_CREATED).json(messages.RESPONSE_OK_CREATED);
+    } catch (err) {
+      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
+    }
   }
 };

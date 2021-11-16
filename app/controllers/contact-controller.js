@@ -5,13 +5,14 @@ const { getAll } = require('../services/contact-service');
 module.exports = {
   getAll: async (req, res) => {
     try {
-      const response = await getAll();
-
-      response
-        ? res.status(statusCode.RESPONSE_OK).json(response)
-        : res
-            .status(statusCode.NOT_FOUND_ERROR)
-            .json(responseMessage.NOT_FOUND_ERROR);
+      const contacts = await getAll();
+      if (contacts.length > 0) {
+        res.status(statusCode.RESPONSE_OK).json(contacts);
+      } else {
+        res
+          .status(statusCode.RESPONSE_OK_NO_CONTENT)
+          .json(responseMessage.RESPONSE_OK_NO_CONTENT);
+      }
     } catch (error) {
       res
         .status(statusCode.INTERNAL_ERROR)

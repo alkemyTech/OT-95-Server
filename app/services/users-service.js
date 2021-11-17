@@ -14,7 +14,7 @@ module.exports = {
       if (users.length > 0) {
         res.status(codeStatus.RESPONSE_OK).json({ data: users });
       } else {
-        res.status(codeStatus.NOT_FOUND_ERROR).json(messages.RESPONSE_OK_NO_CONTENT);
+        res.status(codeStatus.RESPONSE_OK_NO_CONTENT).json(messages.RESPONSE_OK_NO_CONTENT);
       }
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
@@ -25,7 +25,7 @@ module.exports = {
       const { id } = req.params;
       const user = await UsersRepository.getOne(id);
       if (!user) {
-        res.status(codeStatus.NOT_FOUND_ERROR).json({ message: messages.NOT_FOUND_ERROR });
+        res.status(codeStatus.RESPONSE_OK_NO_CONTENT).json(messages.RESPONSE_OK_NO_CONTENT);
       } else {
         res.status(codeStatus.RESPONSE_OK).json({ data: user });
       }
@@ -60,9 +60,11 @@ module.exports = {
     try {
       const { id } = req.params;
       const user = await UsersRepository.delete(id);
-      res.json({
-        data: user ? messages.RESPONSE_OK : messages.RESPONSE_OK_NO_CONTENT
-      });
+      if (user) {
+        res.status(codeStatus.RESPONSE_OK).json(messages.RESPONSE_OK);
+      } else {
+        res.status(codeStatus.RESPONSE_OK_NO_CONTENT).json(messages.RESPONSE_OK_NO_CONTENT);
+      }
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
@@ -71,11 +73,18 @@ module.exports = {
     try {
       const { id } = req.params;
       const data = req.body;
-      const user = await UsersRepository.update(id, data);
-      if (user[0] === 0) {
-        res.status(codeStatus.NOT_FOUND_ERROR).json({ message: messages.RESPONSE_OK_NO_CONTENT });
+      const saltRounds = 10;
+      const userRepeat = await UsersRepository.getUserWithEmail(data.email);
+      if (userRepeat) {
+        res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.EMAIL_REPEAT);
       } else {
-        res.status(codeStatus.RESPONSE_OK).json({ user });
+        data.password = bcrypt.hashSync(data.password, saltRounds);
+        const user = await UsersRepository.update(id, data);
+        if (user[0] === 0) {
+          res.status(codeStatus.BAD_REQUEST_ERROR).json({ message: messages.BAD_REQUEST_ERROR });
+        } else {
+          res.status(codeStatus.RESPONSE_OK).json({ user });
+        }
       }
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);

@@ -9,13 +9,13 @@ const { registerValidate } = require('../middlewares/user-middleware');
 
 /* GET users listing. */
 
-router.get('/users', [validateJwt, isAdmin], usersController.getAll);
+router.get('/', [validateJwt, isAdmin], usersController.getAll);
 
 router.get('/:id', [validateJwt, isOwnerShip], usersController.getOne);
 
 router.post('/', [validateJwt, isAdmin, registerValidate], usersController.createUser);
 
-router.put('/:id', [validateJwt, isOwnerShip], usersController.updateUser);
+router.put('/:id', [validateJwt, isOwnerShip, registerValidate], usersController.updateUser);
 
 router.delete('/:id', [validateJwt, isOwnerShip], usersController.deleteUser);
 

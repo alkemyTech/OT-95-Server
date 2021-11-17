@@ -21,12 +21,12 @@
     
     },
          "/users": {},
-         "/activity":{},
          "/categories":{},
          "/coments": {},
          "/contact": {},
          "/members": {},
          "/news": {},
+         "/activity":{},
          "/organization": {},
          "/slides": {},
          "/testimonials": {}

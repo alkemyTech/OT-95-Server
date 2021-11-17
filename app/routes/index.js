@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const usersRouter = require('./users');
+const organizationPublicRouter = require('./organization-public-route');
 const organizationRouter = require('./organization-route');
 const categoriesRouter = require('./categories-route');
 const testimoniaslRouter = require('./testimonials-route');
@@ -16,6 +17,8 @@ const newsRouter = require('./news-router');
 router.use('/users', usersRouter);
 
 router.use('/auth', authRouter);
+
+router.use('/organization/public', organizationPublicRouter);
 
 router.use('/organization', organizationRouter);
 

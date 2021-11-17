@@ -14,14 +14,13 @@ module.exports = {
   },
 
   update: async (id, category) => {
-    if (await categoriesRepository.getCategory(id)) {
-      if (category.image) {
-        category.image = await uploadFile(category.image);
-      }
-      return categoriesRepository.updateCategory(id, category);
+    try {
+      if (category.image) category.image = await uploadFile(category.image);
+      return await categoriesRepository.updateCategory(id, category);
+    } catch (err) {
+      return null;
     }
-    return 0;
   },
 
-  remove: id => categoriesRepository.deleteCategory(id)
+  remove: id => categoriesRepository.deleteCategory(id),
 };

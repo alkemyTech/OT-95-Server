@@ -14,7 +14,10 @@ module.exports = {
   },
 
   updateCategory: async (id, data) => {
-    return Categories.update(data, { where: { id } });
+    const category = await Categories.findByPk(id);
+    console.log(category);
+    await category.update(data);
+    return category;
   },
 
   deleteCategory: async (id) => {

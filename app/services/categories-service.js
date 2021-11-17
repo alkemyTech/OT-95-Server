@@ -3,7 +3,7 @@ const { uploadFile } = require('./uploadFile');
 
 module.exports = {
   getAll: async ({ page, url }) => {
-    const limit = 5;
+    const limit = 10;
     const offset = (page - 1) * limit;
     const { count, rows } = await categoriesRepository.getCategories(offset, limit);
     const pages = Math.ceil(count / limit);

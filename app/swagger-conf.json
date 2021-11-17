@@ -1,0 +1,35 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "0.0.0",
+        "title": "API ONG Somos Mas",
+        "license": {
+            "name": "ong-server" 
+        }
+    },
+    "paths": {
+        "/roles":  {
+            "get": {
+                "description": "Returns a list of roles.",
+                "tags": ["/roles"],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+                }
+    
+    },
+         "/users": {},
+         "/activity":{},
+         "/categories":{},
+         "/coments": {},
+         "/contact": {},
+         "/members": {},
+         "/news": {},
+         "/organization": {},
+         "/slides": {},
+         "/testimonials": {}
+
+}
+}

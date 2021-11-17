@@ -5,9 +5,13 @@ const messages = require('../constants/messages');
 module.exports = {
   getAll: async (req, res) => {
     try {
-      const categories = await getAll();
-      return categories.length > 0
-        ? res.status(statusResponses.RESPONSE_OK).json({ data: categories })
+      const content = {
+        page: Number(req.query.page) || 1,
+        url: `${req.protocol}://${req.headers.host}${req.baseUrl}`
+      };
+      const categories = await getAll(content);
+      return categories.data.length > 0
+        ? res.status(statusResponses.RESPONSE_OK).json(categories)
         : res.status(statusResponses.RESPONSE_OK_NO_CONTENT).json({ data: [] });
     } catch (error) {
       return res.status(statusResponses.INTERNAL_ERROR).json({ message: messages.INTERNAL_ERROR });

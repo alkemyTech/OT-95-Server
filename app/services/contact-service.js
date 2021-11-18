@@ -1,5 +1,7 @@
-const { getAllContacts } = require('../repositories/contact-repository');
+const { getAllContacts, create } = require('../repositories/contact-repository');
 
 module.exports = {
-  getAll: () => getAllContacts()
+  getAll: () => getAllContacts(),
+
+  create: data => create(data)
 };

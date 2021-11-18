@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -27,14 +27,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    news_id: {
+    newsId: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
   }, {
     sequelize,
     modelName: 'Comment',
-    timestamps: true
+    timestamps: true,
+    paranoid: true
   });
   return Comment;
 };

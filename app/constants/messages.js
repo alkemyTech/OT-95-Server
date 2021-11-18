@@ -5,6 +5,7 @@ const BAD_GATEWAY = 'Bad gateway';
 const RESPONSE_OK = 'OK';
 const RESPONSE_OK_CREATED = 'Generated successfully';
 const RESPONSE_OK_UPDATED = 'Updated successfully';
+const RESPONSE_OK_DELETED = 'Deleted successfully';
 const RESPONSE_OK_NO_CONTENT = 'No Content';
 const REQUEST_TIMEOUT = 'Request timeout';
 const UNAUTHORIZED_USER_CREDENTIALS = 'Unauthorized user credentials';
@@ -34,6 +35,7 @@ module.exports = {
   RESPONSE_OK_CREATED,
   RESPONSE_OK_UPDATED,
   RESPONSE_OK_NO_CONTENT,
+  RESPONSE_OK_DELETED,
   REQUEST_TIMEOUT,
   UNAUTHORIZED_USER_CREDENTIALS,
   FORBIDDEN,

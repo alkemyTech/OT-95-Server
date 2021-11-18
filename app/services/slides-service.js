@@ -20,25 +20,25 @@ module.exports = {
     try {
       const slide = await slidesRepository.getById(id);
       if (!slide) {
-        return { status: status.NOT_FOUND_ERROR, response: messages.NOT_FOUND_ERROR };
+        return { status: status.NOT_FOUND_ERROR, response: { message: messages.NOT_FOUND_ERROR } };
       }
-      return { status: status.RESPONSE_OK, response: slide };
+      return { status: status.RESPONSE_OK, response: { data: slide } };
     } catch (error) {
-      return { status: status.INTERNAL_ERROR, response: messages.INTERNAL_ERROR };
+      return { status: status.INTERNAL_ERROR, response: { message: messages.INTERNAL_ERROR } };
     }
   },
   getAll: async () => {
     try {
       const slides = await getSlides();
       if (slides.length === 0) {
-        return { status: status.NOT_FOUND_ERROR, response: messages.NOT_FOUND_ERROR };
+        return { status: status.RESPONSE_OK_NO_CONTENT, response: { data: [] } };
       }
       return {
         status: status.RESPONSE_OK,
-        response: slides
+        response: { data: slides }
       };
     } catch (error) {
-      return { status: status.INTERNAL_ERROR, response: messages.INTERNAL_ERROR };
+      return { status: status.INTERNAL_ERROR, response: { message: messages.INTERNAL_ERROR } };
     }
   },
   create: async (body) => {
@@ -47,26 +47,41 @@ module.exports = {
       const uploadPath = await saveTempImage(imageUrl);
       const location = await uploadFile({ mimetype: 'image/jpg', path: uploadPath });
       data.imageUrl = location;
-      await slidesRepository.create(data);
-      return { status: status.RESPONSE_OK_CREATED, response: messages.RESPONSE_OK_CREATED };
+      const slide = await slidesRepository.create(data);
+      return {
+        status: status.RESPONSE_OK_CREATED,
+        response: { message: messages.RESPONSE_OK_CREATED, data: slide }
+      };
     } catch (error) {
-      return { status: status.INTERNAL_ERROR, response: messages.INTERNAL_ERROR };
+      return { status: status.INTERNAL_ERROR, response: { message: messages.INTERNAL_ERROR } };
     }
   },
-  update: async (id, data) => {
+  update: async (id, body) => {
+    const { imageUrl, ...data } = body;
     try {
-      await slidesRepository.update(id, data);
-      return { status: status.RESPONSE_OK_UPDATED, response: messages.RESPONSE_OK_UPDATED };
+      if (imageUrl) {
+        const uploadPath = await saveTempImage(imageUrl);
+        const location = await uploadFile({ mimetype: 'image/jpg', path: uploadPath });
+        data.imageUrl = location;
+      }
+      const slide = await slidesRepository.update(id, data);
+      return {
+        status: status.RESPONSE_OK,
+        response: { message: messages.RESPONSE_OK_UPDATED, data: slide }
+      };
     } catch (error) {
-      return { status: status.INTERNAL_ERROR, response: messages.INTERNAL_ERROR };
+      return { status: status.INTERNAL_ERROR, response: { message: messages.INTERNAL_ERROR } };
     }
   },
   destroy: async (id) => {
     try {
-      await slidesRepository.destroy(id);
-      return { status: status.RESPONSE_OK, response: messages.RESPONSE_OK };
+      const slide = await slidesRepository.destroy(id);
+      return {
+        status: status.RESPONSE_OK,
+        response: { message: messages.RESPONSE_OK, data: slide }
+      };
     } catch (error) {
-      return { status: status.INTERNAL_ERROR, response: messages.INTERNAL_ERROR };
+      return { status: status.INTERNAL_ERROR, response: { message: messages.INTERNAL_ERROR } };
     }
   }
 };

@@ -2,7 +2,23 @@ const categoriesRepository = require('../repositories/categories-repository');
 const { uploadFile } = require('./uploadFile');
 
 module.exports = {
-  getAll: () => categoriesRepository.getCategories(),
+  getAll: async ({ page, url }) => {
+    const limit = 10;
+    const offset = (page - 1) * limit;
+    const { count, rows } = await categoriesRepository.getCategories(offset, limit);
+    const pages = Math.ceil(count / limit);
+    const next = page < pages ? `${url}?page=${page + 1}` : null;
+    const prev = page > 1 ? `${url}?page=${page - 1}` : null;
+    return {
+      info: {
+        count,
+        pages,
+        next,
+        prev,
+      },
+      data: rows,
+    };
+  },
 
   getById: id => categoriesRepository.getCategory(id),
 
@@ -14,14 +30,13 @@ module.exports = {
   },
 
   update: async (id, category) => {
-    if (await categoriesRepository.getCategory(id)) {
-      if (category.image) {
-        category.image = await uploadFile(category.image);
-      }
-      return categoriesRepository.updateCategory(id, category);
+    try {
+      if (category.image) category.image = await uploadFile(category.image);
+      return await categoriesRepository.updateCategory(id, category);
+    } catch (err) {
+      return null;
     }
-    return 0;
   },
 
-  remove: id => categoriesRepository.deleteCategory(id)
+  remove: id => categoriesRepository.deleteCategory(id),
 };

@@ -10,7 +10,7 @@ const { isAdmin } = require('../middlewares/isAdmin');
 const upload = multer({ dest: './temp' });
 
 // GET all categories by name.
-router.get('/', validateJWT, isAdmin, categoriesController.getAll);
+router.get('/', validateJWT, categoriesController.getAll);
 
 router.get('/:id', validateJWT, isAdmin, categoriesController.getById);
 

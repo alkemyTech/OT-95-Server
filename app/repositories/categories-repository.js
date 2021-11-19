@@ -1,8 +1,8 @@
 const { Categories } = require('../models/index');
 
 module.exports = {
-  getCategories: async () => {
-    return Categories.findAll({ attributes: ['name'] });
+  getCategories: async (offset, limit) => {
+    return Categories.findAndCountAll({ offset, limit, attributes: ['name'] });
   },
 
   getCategory: async (id) => {
@@ -14,11 +14,13 @@ module.exports = {
   },
 
   updateCategory: async (id, data) => {
-    return Categories.update(data, { where: { id } });
+    const category = await Categories.findByPk(id);
+    console.log(category);
+    await category.update(data);
+    return category;
   },
 
   deleteCategory: async (id) => {
     return Categories.destroy({ where: { id } });
   },
 };
-

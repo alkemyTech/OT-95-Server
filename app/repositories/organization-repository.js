@@ -1,4 +1,3 @@
-'use strict';
 const { Organization } = require('../models/index');
 
 module.exports = {
@@ -8,7 +7,7 @@ module.exports = {
   getById: id => Organization.findByPk(id),
 
   getPublicData: () => Organization.findAll({
-    attributes: ['name', 'image', 'phone', 'address']
+    attributes: ['name', 'image', 'phone', 'address', 'facebookUrl', 'instagramUrl', 'linkedinUrl']
   }),
 
   create: organizationData => Organization.create(organizationData),

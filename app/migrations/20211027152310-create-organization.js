@@ -1,4 +1,3 @@
-'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Organizations', {
@@ -32,6 +31,18 @@ module.exports = {
         type: Sequelize.TEXT
       },
       aboutUsText: {
+        type: Sequelize.TEXT
+      },
+      facebookUrl: {
+        allowNull: true,
+        type: Sequelize.TEXT
+      },
+      instagramUrl: {
+        allowNull: true,
+        type: Sequelize.TEXT
+      },
+      linkedinUrl: {
+        allowNull: true,
         type: Sequelize.TEXT
       },
       deletedAt: {

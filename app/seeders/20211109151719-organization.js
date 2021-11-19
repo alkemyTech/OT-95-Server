@@ -13,6 +13,9 @@ module.exports = {
         abuelos y vecinos del barrio La Cava generando procesos de crecimiento y de
         inserción social. Uniendo las manos de todas las familias, las que viven en el barrio y
         las que viven fuera de él, es que podemos pensar, crear y garantizar estos procesos.`,
+        facebookUrl: 'www.facebook.com/somosmas',
+        instagramUrl: 'www.instagra.com/somosmas',
+        linkedinUrl: 'www.linkedin.com/somosmas',
         createdAt: new Date(),
         updatedAt: new Date()
       }

@@ -9,6 +9,23 @@ require('dotenv').config();
 const indexRouter = require('./app/routes/index');
 
 const app = express();
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
+const swaggerDefinition = {
+  openapi: '3.0.0',
+  info: {
+    title: 'API ONG Somos Mas',
+    version: '0.0.0',
+  },
+};
+
+const options = {
+  swaggerDefinition,
+  apis: ['./app/routes/*.js'],
+};
+
+const swaggerSpec = swaggerJSDoc(options);
 app.use(cors());
 
 // view engine setup
@@ -22,6 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', indexRouter);
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

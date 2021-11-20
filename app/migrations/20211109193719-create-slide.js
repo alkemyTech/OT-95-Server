@@ -8,11 +8,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       imageUrl: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       text: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       order: {

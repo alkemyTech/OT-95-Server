@@ -12,10 +12,14 @@ const slidesRouter = require('./slides-route');
 const contactsRouter = require('./contact-routes');
 const commentsRouter = require('./comments-routes');
 const newsRouter = require('./news-router');
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('../swagger-conf.json');
+// const swaggerUi = require('swagger-ui-express');
+// const swaggerJSDoc = require('swagger-jsdoc');
+// const confSwagger = require('../conf-swagger');
 
-router.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// const swaggerDocs = swaggerJSDoc(swaggerOptions);
+// const swaggerSpec = swaggerJSDoc(options);
+
+// router.use('/docs', swaggerUi.serve, swaggerUi.setup(confSwagger));
 
 router.use('/users', usersRouter);
 

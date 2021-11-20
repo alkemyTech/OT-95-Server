@@ -1,10 +1,10 @@
-const UsersRepository = require("../repositories/users-repository");
-const codeStatus = require("../constants/constants");
-const messages = require("../constants/messages");
-const bcrypt = require("bcrypt");
-const { generateJwt } = require("../helpers/generate-jwt");
-const { generateTemplate } = require("../helpers/generateTemplate");
-const { sendEmail } = require("../services/email-service");
+const UsersRepository = require('../repositories/users-repository');
+const codeStatus = require('../constants/constants');
+const messages = require('../constants/messages');
+const bcrypt = require('bcrypt');
+const { generateJwt } = require('../helpers/generate-jwt');
+const { generateTemplate } = require('../helpers/generateTemplate');
+const { sendEmail } = require('../services/email-service');
 
 module.exports = {
   getAll: async (req, res) => {
@@ -48,10 +48,10 @@ module.exports = {
         data.roleId = 2;
         const user = await UsersRepository.create(data);
 
-        const from = "register";
+        const from = 'register';
         const html = await generateTemplate(1, from);
 
-        const subject = "Email de bienvenida";
+        const subject = 'Email de bienvenida';
         await sendEmail(user.email, html, subject);
 
         const token = await generateJwt(user);
@@ -125,5 +125,5 @@ module.exports = {
       // console.log(error);
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
     }
-  },
+  }
 };

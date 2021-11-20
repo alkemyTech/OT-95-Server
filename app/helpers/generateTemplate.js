@@ -20,6 +20,7 @@ module.exports = {
       } else {
         title = `Gracias por contactarse con ${organization.name}`;
       }
+
       const html = template({
         title,
         text: organization.aboutUsText,
@@ -31,5 +32,5 @@ module.exports = {
     } catch (error) {
       console.log(error);
     }
-  },
+  }
 };

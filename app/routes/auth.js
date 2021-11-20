@@ -134,4 +134,21 @@ module.exports = router;
  *           description: Create a new User
  *           tags:
  *              - Users
+ *           responses:
+ *             201:
+ *               description: Generated successfully
+ *               content:
+ *                 application/json:
+ *                   schema:
+ *                     type: object
+ *                     properties:
+ *                       message:
+ *                         type: string
+ *                         example: Generated successfully
+ *                       data:
+ *                         $ref: '#/components/schemas/Users'
+ *             400:
+ *               $ref: '#/components/responses/badRequestError'
+ *             401:
+ *               $ref: '#/components/responses/unauthorizedError'
 */

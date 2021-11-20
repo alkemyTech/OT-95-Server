@@ -6,12 +6,12 @@ const { validateCreation, existMember } = require('../middlewares/members-middle
 
 const router = express.Router();
 
-router.post('/', validateJwt, isAdmin, validateCreation, membersController.create);
+router.post('/', [validateJwt, isAdmin, ...validateCreation], membersController.create);
 
-router.get('/', validateJwt, isAdmin, membersController.getAll);
+router.get('/', [validateJwt, isAdmin], membersController.getAll);
 
-router.put('/:id', validateJwt, isAdmin, existMember, membersController.update);
+router.put('/:id', [validateJwt, isAdmin, ...existMember], membersController.update);
 
-router.delete('/:id', validateJwt, isAdmin, existMember, membersController.destroy);
+router.delete('/:id', [validateJwt, isAdmin, ...existMember], membersController.destroy);
 
 module.exports = router;

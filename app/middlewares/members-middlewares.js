@@ -5,7 +5,7 @@ const { Member } = require('../models');
 const existMemberById = async (id) => {
   const member = await Member.findByPk(id);
   if (!member) {
-    throw new Error(`member with id ${id} does not exist`);
+    throw new Error(`Member with id ${id} does not exist`);
   }
 };
 

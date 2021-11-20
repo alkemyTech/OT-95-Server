@@ -1,0 +1,670 @@
+{
+	"info": {
+		"_postman_id": "3cdfe4de-97f2-4f2e-a1da-0a6353d0e273",
+		"name": "challenge Alkemy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "manuelvalenzuelatr@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "manuelvalenzuelatr@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "movies",
+			"item": [
+				{
+					"name": "all movies",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsIm5hbWUiOiJtYW51ZWx2YWxlbnp1ZWxhdHJAZ21haWwuY29tIiwiaWF0IjoxNjMyOTgwMjk2LCJleHAiOjE2MzI5ODA0NzZ9.FVn6XcfpSog8QAlVy5nrwU9vurNqGq7HwnAlRXQVNw0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "sdfsdfdfsd",
+								"value": "sdfsdfds",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"type": "file",
+									"src": [],
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/movies?title=&gender=&order=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": ""
+								},
+								{
+									"key": "gender",
+									"value": ""
+								},
+								{
+									"key": "order",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsIm5hbWUiOiJtYW51ZWx2YWxlbnp1ZWxhdHJAZ21haWwuY29tIiwiaWF0IjoxNjMyOTczNTA1LCJleHAiOjE2MzI5NzM2ODV9.MWxCyuFbPS14HzB5mDFGPuhHY_byLUnlebmtk_OPDWA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/movies/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsIm5hbWUiOiJtYW51ZWx2YWxlbnp1ZWxhdHJAZ21haWwuY29tIiwiaWF0IjoxNjMzMDczNzA5LCJleHAiOjE2MzMwNzM4ODl9.O2D_5qWHLGXafDLPODFehzTEy7gXf_GNHLoRsqffB20",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/juan/Downloads/The_Avengers.png"
+								},
+								{
+									"key": "title",
+									"value": "The Avengers",
+									"type": "text"
+								},
+								{
+									"key": "creationDate",
+									"value": "2012-04-14",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "genderId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "character",
+									"value": "7",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update movie",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/juan/Downloads/The_Avengers.png"
+								},
+								{
+									"key": "title",
+									"value": "The Avengers",
+									"type": "text"
+								},
+								{
+									"key": "creationDate",
+									"value": "2012-04-14",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "genderId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/movies/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/movies/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								"3"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "characters",
+			"item": [
+				{
+					"name": "all characters",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsIm5hbWUiOiJtYW51ZWx2YWxlbnp1ZWxhdHJAZ21haWwuY29tIiwiaWF0IjoxNjMyOTQwMTY1LCJleHAiOjE2MzI5NDAzNDV9.rD8KbYqEYhyAhNYvEMZhLBe8ZbCUQ8G6lg5Txj1CrWM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6Imp1YW5tYWRlZ2lvcmdpQGdtYWlsLmNvbSIsImlhdCI6MTYzMjgxMzUzOCwiZXhwIjoxNjMyODE3MTM4fQ.5_0sS9LZf_aGylUknIDDiMWdPGrm3_lKtkSOwpw2BNk",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/characters?name=&age=&weight=&movie=&order=",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": ""
+								},
+								{
+									"key": "age",
+									"value": ""
+								},
+								{
+									"key": "weight",
+									"value": ""
+								},
+								{
+									"key": "movie",
+									"value": ""
+								},
+								{
+									"key": "order",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "detail character",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsIm5hbWUiOiJtYW51ZWx2YWxlbnp1ZWxhdHJAZ21haWwuY29tIiwiaWF0IjoxNjMyOTgwMjk2LCJleHAiOjE2MzI5ODA0NzZ9.FVn6XcfpSog8QAlVy5nrwU9vurNqGq7HwnAlRXQVNw0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/characters/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create character",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsIm5hbWUiOiJtYW51ZWx2YWxlbnp1ZWxhdHJAZ21haWwuY29tIiwiaWF0IjoxNjMzMDc0ODEyLCJleHAiOjE2MzMwNzQ5OTJ9.XnrpFY5ZOtYXtja308O2YrJvJq6jeIhfH6oS8JMuZmQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/juan/Downloads/RobertDowneyJr.png"
+								},
+								{
+									"key": "name",
+									"value": "Robert Downey, Jr",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "56",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "90",
+									"type": "text"
+								},
+								{
+									"key": "history",
+									"value": "Robert John Downey Jr. (Nueva York, 4 de abril de 1965) es un actor, actor de voz, productor y cantante estadounidense. Inició su carrera como actor a temprana edad apareciendo en varios filmes dirigidos por su padre, Robert Downey Sr., y en su infancia estudió actuación en varias academias de Nueva York. Se mudó con su padre a California, pero abandonó sus estudios para enfocarse completamente en su carrera.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/characters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update character",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsIm5hbWUiOiJtYW51ZWx2YWxlbnp1ZWxhdHJAZ21haWwuY29tIiwiaWF0IjoxNjMzMDc0ODEyLCJleHAiOjE2MzMwNzQ5OTJ9.XnrpFY5ZOtYXtja308O2YrJvJq6jeIhfH6oS8JMuZmQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/juan/Downloads/RobertDowneyJr.png"
+								},
+								{
+									"key": "name",
+									"value": "Robert Downey, Jr",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "56",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "95",
+									"type": "text"
+								},
+								{
+									"key": "history",
+									"value": "Robert John Downey Jr. (Nueva York, 4 de abril de 1965) es un actor, actor de voz, productor y cantante estadounidense. Inició su carrera como actor a temprana edad apareciendo en varios filmes dirigidos por su padre, Robert Downey Sr., y en su infancia estudió actuación en varias academias de Nueva York. Se mudó con su padre a California, pero abandonó sus estudios para enfocarse completamente en su carrera.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/characters/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete character",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsIm5hbWUiOiJtYW51ZWx2YWxlbnp1ZWxhdHJAZ21haWwuY29tIiwiaWF0IjoxNjMzMDc0ODEyLCJleHAiOjE2MzMwNzQ5OTJ9.XnrpFY5ZOtYXtja308O2YrJvJq6jeIhfH6oS8JMuZmQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/characters/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"characters",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "relationship",
+			"item": [
+				{
+					"name": "add realationship",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsIm5hbWUiOiJtYW51ZWx2YWxlbnp1ZWxhdHJAZ21haWwuY29tIiwiaWF0IjoxNjMzMDUxMjU5LCJleHAiOjE2MzMwNTE0Mzl9.ZfvBuY-dCR9GMBSV3gEXLzh5wB5QIcKqfVVOHzKgBd8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "characterId",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "movieId",
+									"value": "8",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/relate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"relate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete relationship",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsIm5hbWUiOiJtYW51ZWx2YWxlbnp1ZWxhdHJAZ21haWwuY29tIiwiaWF0IjoxNjMzMDUxMjU5LCJleHAiOjE2MzMwNTE0Mzl9.ZfvBuY-dCR9GMBSV3gEXLzh5wB5QIcKqfVVOHzKgBd8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "characterId",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "movieId",
+									"value": "8",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/relate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"relate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

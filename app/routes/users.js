@@ -2,25 +2,21 @@ const express = require('express');
 
 const router = express.Router();
 const usersController = require('../controllers/users-controller');
-const validateFields = require('../middlewares/validate-fields');
-const validator = require('../helpers/db-validator');
 const validateJwt = require('../middlewares/validate-jwt');
 const { isAdmin } = require('../middlewares/isAdmin');
-const { check } = require('express-validator');
+const { isOwnerShip } = require('../middlewares/ownership-middleware');
+const { registerValidate } = require('../middlewares/user-middleware');
 
 /* GET users listing. */
-// router.get('/', [
-  // validateJwt
-// ], usersController.getAll);
 
-router.get('/:id', usersController.getOne);
+router.get('/', [validateJwt, isAdmin], usersController.getAll);
 
-router.post('/', usersController.createUser);
+router.get('/:id', [validateJwt, isOwnerShip], usersController.getOne);
 
-router.delete('/:id', usersController.deleteUser);
+router.post('/', [validateJwt, isAdmin, registerValidate], usersController.createUser);
 
-router.patch('/:id', usersController.updateUser);
+router.put('/:id', [validateJwt, isOwnerShip, registerValidate], usersController.updateUser);
 
-router.get('/users', validateJwt, isAdmin, usersController.getAll);
+router.delete('/:id', [validateJwt, isOwnerShip], usersController.deleteUser);
 
 module.exports = router;

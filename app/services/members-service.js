@@ -1,6 +1,8 @@
 const membersRepository = require('../repositories/members-repository');
 const status = require('../constants/constants');
 const messages = require('../constants/messages');
+const { uploadFile } = require('./uploadFile');
+const { saveTempImage } = require('../helpers/saveTempImage');
 
 module.exports = {
   getById: async (id) => {
@@ -25,8 +27,12 @@ module.exports = {
       return { status: status.INTERNAL_ERROR, response: messages.INTERNAL_ERROR };
     }
   },
-  create: async (data) => {
+  create: async (body) => {
     try {
+      const { image, ...data } = body;
+      const uploadPath = await saveTempImage(image);
+      const location = await uploadFile({ mimetype: 'image/jpg', path: uploadPath });
+      data.image = location;
       await membersRepository.create(data);
       return { status: status.RESPONSE_OK_CREATED, response: messages.RESPONSE_OK_CREATED };
     } catch (error) {

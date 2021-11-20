@@ -1,4 +1,4 @@
-const newsRepository = require('../repository/news-repository');
+const newsRepository = require('../repositories/news-repository');
 
 const getAll = () => newsRepository.getAll();
 

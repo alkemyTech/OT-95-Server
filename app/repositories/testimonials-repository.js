@@ -6,7 +6,7 @@ module.exports = {
 
   getById: id => Testimonial.findByPk(id),
 
-  create: (name, image, content) => Testimonial.create({ name, image, content }),
+  create: data => Testimonial.create(data),
 
   update: async (id, data) => {
     const testimonial = await Testimonial.findByPk(id);

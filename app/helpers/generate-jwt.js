@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
-const constants = require('../constants/constants');
 const messages = require('../constants/messages');
+const { secretKey } = require('../config/config').JWT;
 
 const generateJwt = (user) => {
   return new Promise((resolve, reject) => {
     const payload = { user };
-    jwt.sign(payload, constants.SECRETORPRIVATEKEY, {
-      expiresIn: 60 * 60
+    jwt.sign(payload, secretKey, {
+      expiresIn: '24h'
     }, (err, token) => {
       if (err) {
         reject(messages.TOKEN_NOT_GENERATED);

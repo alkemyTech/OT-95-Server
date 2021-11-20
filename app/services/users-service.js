@@ -13,9 +13,7 @@ module.exports = {
       if (users.length > 0) {
         res.status(codeStatus.RESPONSE_OK).json({ data: users });
       } else {
-        res
-          .status(codeStatus.RESPONSE_OK_NO_CONTENT)
-          .json(messages.RESPONSE_OK_NO_CONTENT);
+        res.status(codeStatus.RESPONSE_OK_NO_CONTENT).json(messages.RESPONSE_OK_NO_CONTENT);
       }
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
@@ -26,9 +24,7 @@ module.exports = {
       const { id } = req.params;
       const user = await UsersRepository.getOne(id);
       if (!user) {
-        res
-          .status(codeStatus.RESPONSE_OK_NO_CONTENT)
-          .json(messages.RESPONSE_OK_NO_CONTENT);
+        res.status(codeStatus.RESPONSE_OK_NO_CONTENT).json(messages.RESPONSE_OK_NO_CONTENT);
       } else {
         res.status(codeStatus.RESPONSE_OK).json({ data: user });
       }
@@ -71,9 +67,7 @@ module.exports = {
       if (user) {
         res.status(codeStatus.RESPONSE_OK).json(messages.RESPONSE_OK);
       } else {
-        res
-          .status(codeStatus.RESPONSE_OK_NO_CONTENT)
-          .json(messages.RESPONSE_OK_NO_CONTENT);
+        res.status(codeStatus.RESPONSE_OK_NO_CONTENT).json(messages.RESPONSE_OK_NO_CONTENT);
       }
     } catch (error) {
       res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
@@ -91,9 +85,7 @@ module.exports = {
         data.password = bcrypt.hashSync(data.password, saltRounds);
         const user = await UsersRepository.update(id, data);
         if (user[0] === 0) {
-          res
-            .status(codeStatus.BAD_REQUEST_ERROR)
-            .json({ message: messages.BAD_REQUEST_ERROR });
+          res.status(codeStatus.BAD_REQUEST_ERROR).json({ message: messages.BAD_REQUEST_ERROR });
         } else {
           res.status(codeStatus.RESPONSE_OK).json({ user });
         }
@@ -116,9 +108,7 @@ module.exports = {
           const token = await generateJwt(user);
           res.status(codeStatus.RESPONSE_OK).json({ user, token });
         } else {
-          res
-            .status(codeStatus.NOK_USER_CREDENTIALS)
-            .json(messages.UNAUTHORIZED_USER_CREDENTIALS);
+          res.status(codeStatus.NOK_USER_CREDENTIALS).json(messages.UNAUTHORIZED_USER_CREDENTIALS);
         }
       }
     } catch (error) {

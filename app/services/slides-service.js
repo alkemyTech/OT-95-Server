@@ -79,6 +79,7 @@ module.exports = {
         }
       };
     } catch (error) {
+      console.log(error)
       return {
         status: status.INTERNAL_ERROR,
         response: { message: messages.INTERNAL_ERROR }

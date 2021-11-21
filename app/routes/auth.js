@@ -189,4 +189,26 @@ module.exports = router;
  *              $ref: '#/components/responses/badRequestError'
  *            401:
  *              $ref: '#/components/responses/unauthorizedError'
+ * /me:
+ *     get:
+ *       sumary: Data User
+ *       description: Data User
+ *       tags:
+ *         - Users
+ *       security:
+ *         - bearerAuth: []
+ *       responses:
+ *         200:
+ *           description: Successfully retrieved
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   data:
+ *                     $ref: '#/components/schemas/Users'
+ *         404:
+ *           $ref: '#/components/responses/notFoundError'
+ *         401:
+ *           $ref: '#/components/responses/unauthorizedError'
 */

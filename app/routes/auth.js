@@ -151,4 +151,42 @@ module.exports = router;
  *               $ref: '#/components/responses/badRequestError'
  *             401:
  *               $ref: '#/components/responses/unauthorizedError'
+ *      User:
+ *        type: object
+ *        required:
+ *          - email
+ *          - password
+ *        properties:
+ *          email:
+ *            type: string
+ *            description: Email of User
+ *            example: "user123@gmail.com"
+ *          password:
+ *            type: string
+ *            description: Password of user
+ *            example: 01a2s34P
+ *
+ * /auth/login:
+ *      post:
+ *          sumary: Login User
+ *          description: Login User
+ *          tags:
+ *            - Users
+ *          responses:
+ *            200:
+ *              description: OK
+ *              content:
+ *                application/json:
+ *                  schema:
+ *                    type: object
+ *                    properties:
+ *                      message:
+ *                        type: string
+ *                        example: OK
+ *                      data:
+ *                        $ref: '#/components/schemas/User'
+ *            400:
+ *              $ref: '#/components/responses/badRequestError'
+ *            401:
+ *              $ref: '#/components/responses/unauthorizedError'
 */

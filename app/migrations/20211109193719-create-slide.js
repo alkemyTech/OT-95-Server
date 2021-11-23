@@ -19,8 +19,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       organizationId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
-        allowNull: false
+        references: {
+          model: 'organizations',
+          key: 'id'
+        },
       },
       deletedAt: {
         type: Sequelize.DATE

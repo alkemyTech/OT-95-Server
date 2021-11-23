@@ -9,8 +9,8 @@ module.exports = {
     const slide = await Slide.findOne({ where: { order } });
     return slide;
   },
-  getAll: async (options) => {
-    const slides = await Slide.findAll(options);
+  getAll: async () => {
+    const slides = await Slide.findAll({ attributes: ['imageUrl', 'order'] });
     return slides;
   },
   create: async (data) => {

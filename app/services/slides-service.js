@@ -4,19 +4,6 @@ const messages = require('../constants/messages');
 const { uploadFile } = require('./uploadFile');
 const { saveTempImage } = require('../helpers/saveTempImage');
 
-const getSlides = async () => {
-  let slides = await slidesRepository.getAll();
-
-  slides = slides.map((slide) => {
-    return {
-      img: slide.imageUrl,
-      order: slide.order
-    };
-  });
-
-  return slides;
-};
-
 module.exports = {
 
   getById: async (id) => {
@@ -44,17 +31,31 @@ module.exports = {
 
   getAll: async () => {
     try {
-      const slides = await getSlides();
+      const slides = await slidesRepository.getAll();
 
       if (slides.length === 0) {
-        return { status: status.RESPONSE_OK_NO_CONTENT, response: { data: [] } };
+        return {
+          status: status.RESPONSE_OK_NO_CONTENT,
+          response: {
+            data: []
+          }
+        };
       }
 
       return {
         status: status.RESPONSE_OK,
-        response: { data: slides }
+        response: {
+          info: {
+            count: '',
+            pages: '',
+            next: '',
+            prev: ''
+          },
+          data: slides
+        }
       };
     } catch (error) {
+      console.log(error);
       return {
         status: status.INTERNAL_ERROR,
         response: { message: messages.INTERNAL_ERROR }

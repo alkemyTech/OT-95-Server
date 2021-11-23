@@ -6,15 +6,17 @@ module.exports = {
 
   all: async (req, res) => {
     try {
-      const testimonials = await testimonialsService.getAll();
+      const url = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
+      const page = +req.query.page || 1;
+      const testimonials = await testimonialsService.getAll(10, page, url);
 
-      if (testimonials.length > 0) {
+      if (testimonials.data.length > 0) {
         res.status(codeStatus.RESPONSE_OK).json(testimonials);
       } else {
-        res.status(codeStatus.RESPONSE_OK_NO_CONTENT).json(messages.RESPONSE_OK_NO_CONTENT);
+        res.status(codeStatus.NOT_FOUND_ERROR).json({ data: [] });
       }
     } catch (err) {
-      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
+      res.status(codeStatus.INTERNAL_ERROR).json({ message: messages.INTERNAL_ERROR });
     }
   },
 
@@ -23,12 +25,12 @@ module.exports = {
       const testimonial = await testimonialsService.getById(req.params.id);
 
       if (testimonial) {
-        res.status(codeStatus.RESPONSE_OK).json(testimonial);
+        res.status(codeStatus.RESPONSE_OK).json({ data: testimonial });
       } else {
-        res.status(codeStatus.RESPONSE_OK_NO_CONTENT).json(messages.RESPONSE_OK_NO_CONTENT);
+        res.status(codeStatus.NOT_FOUND_ERROR).json({ message: messages.NOT_FOUND_ERROR });
       }
     } catch (err) {
-      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
+      res.status(codeStatus.INTERNAL_ERROR).json({ message: messages.INTERNAL_ERROR });
     }
   },
 
@@ -38,12 +40,13 @@ module.exports = {
       const testimonialCreated = await testimonialsService.create(req.body);
 
       if (testimonialCreated) {
-        res.status(codeStatus.RESPONSE_OK_CREATED).json(messages.RESPONSE_OK_CREATED);
+        res.status(codeStatus.RESPONSE_OK_CREATED)
+        .json({ message: messages.RESPONSE_OK_CREATED, data: testimonialCreated });
       } else {
-        res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.BAD_REQUEST_ERROR);
+        res.status(codeStatus.BAD_REQUEST_ERROR).json({ data: messages.BAD_REQUEST_ERROR });
       }
     } catch (err) {
-      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
+      res.status(codeStatus.INTERNAL_ERROR).json({ message: messages.INTERNAL_ERROR });
     }
   },
 
@@ -53,12 +56,13 @@ module.exports = {
       const testimonial = await testimonialsService.update(req.params.id, req.body);
 
       if (testimonial) {
-        res.status(codeStatus.RESPONSE_OK).json(testimonial);
+        res.status(codeStatus.RESPONSE_OK)
+        .json({ message: messages.RESPONSE_OK_UPDATED, data: testimonial });
       } else {
-        res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.BAD_REQUEST_ERROR);
+        res.status(codeStatus.BAD_REQUEST_ERROR).json({ message: messages.BAD_REQUEST_ERROR });
       }
     } catch (err) {
-      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
+      res.status(codeStatus.INTERNAL_ERROR).json({ message: messages.INTERNAL_ERROR });
     }
   },
 
@@ -68,12 +72,12 @@ module.exports = {
 
       if (testimonial) {
         await testimonialsService.destroy(req.params.id);
-        res.status(codeStatus.RESPONSE_OK).json(messages.RESPONSE_OK);
+        res.status(codeStatus.RESPONSE_OK).json({ message: messages.RESPONSE_OK_DELETED });
       } else {
-        res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.BAD_REQUEST_ERROR);
+        res.status(codeStatus.BAD_REQUEST_ERROR).json({ message: messages.BAD_REQUEST_ERROR });
       }
     } catch (err) {
-      res.status(codeStatus.INTERNAL_ERROR).json(messages.INTERNAL_ERROR);
+      res.status(codeStatus.INTERNAL_ERROR).json({ message: messages.INTERNAL_ERROR });
     }
   },
 

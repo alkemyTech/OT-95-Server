@@ -3,7 +3,19 @@ const { uploadFile } = require('./uploadFile');
 
 module.exports = {
 
-  getAll: () => testimonilasRepository.getAll(),
+  getAll: async (limit, page, url) => {
+    const { count, rows } = await testimonilasRepository.getAll(limit, (page - 1) * limit);
+    const pages = Math.ceil(count / limit);
+    return {
+      info: {
+        count,
+        pages,
+        next: page < pages ? `${url}?page=${page + 1}` : null,
+        prev: page > 1 ? `${url}?page=${page - 1}` : null
+      },
+      data: rows
+    };
+  },
 
   getById: id => testimonilasRepository.getById(id),
 

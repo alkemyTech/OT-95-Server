@@ -6,7 +6,6 @@ const { generateJwt } = require('../helpers/generate-jwt');
 const { generateTemplate } = require('../helpers/generateTemplate');
 const { sendEmail } = require('../services/email-service');
 
-
 module.exports = {
   getAll: async (req, res) => {
     try {
@@ -44,12 +43,17 @@ module.exports = {
         data.password = bcrypt.hashSync(data.password, saltRounds);
         data.roleId = 2;
         const user = await UsersRepository.create(data);
-        const html = await generateTemplate(1);
-        await sendEmail(user.email, html);
+
+        const from = 'register';
+        const html = await generateTemplate(1, from);
+
+        const subject = 'Email de bienvenida';
+        await sendEmail(user.email, html, subject);
+
         const token = await generateJwt(user);
         res.status(codeStatus.RESPONSE_OK_CREATED).json({
           data: user || messages.RESPONSE_OK_NO_CONTENT,
-          token
+          token,
         });
       }
     } catch (error) {
@@ -96,7 +100,7 @@ module.exports = {
       const user = await UsersRepository.getUserWithEmail(email);
       if (!user) {
         res.status(codeStatus.NOT_FOUND_ERROR).json({
-          ok: false
+          ok: false,
         });
       } else {
         const success = bcrypt.compareSync(password, user.password);

@@ -5,5 +5,5 @@ module.exports = {
 
   getByEmail: email => Contact.findOne({ where: { email } }),
 
-  create: data => Contact.create(data)
+  create: async data => Contact.create(data)
 };

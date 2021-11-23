@@ -4,14 +4,13 @@ const sengrid = require('@sendgrid/mail');
 sengrid.setApiKey(process.env.SENGRID_API_KEY);
 
 module.exports = {
-
-  sendEmail: async (email, html) => {
+  sendEmail: async (email, html, subject) => {
     try {
       const msg = {
         to: email,
         from: process.env.SENDER_EMAIL,
-        subject: 'Email de bienvenida',
-        html
+        subject,
+        html,
       };
 
       await sengrid.send(msg);

@@ -6,14 +6,7 @@ const decodeToken = require('../middlewares/decode-token');
 const { registerValidate, loginValidate } = require('../middlewares/user-middleware');
 
 router.post('/register', registerValidate, usersController.createUser);
-/* GET users listing. */
-/**
-* @swagger
-* /login:
-*       post:
-*           description: Login to users
-*
-*/
+
 router.post('/login', loginValidate, usersController.login);
 
 router.get('/me', decodeToken);
@@ -70,49 +63,12 @@ module.exports = router;
  *              example: "2021-11-01T00:00:00.000Z"
  *
  *    responses:
- *      unauthorizedError:
- *        description: UnauthorizedError
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                error:
- *                  type: object
- *                  properties:
- *                    name:
- *                      type: string
- *                    message:
- *                      type: string
- *                msg:
- *                  type: string
  *
- *      badRequestError:
- *        description: BadRequestError
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                message:
- *                  type: string
- *                  example: "Bad request"
- *
- *      notFoundError:
- *        description: NotFoundError
- *        content:
- *          application/json:
- *            schema:
- *              type: object
- *              properties:
- *                message:
- *                  type: string
- *                  example: "Not found"
  *    requestBody:
  *      description: User object
  *      required: true
  *      content:
- *        multipart/form-data:
+ *        application/json:
  *          schema:
  *            type: object
  *            properties:
@@ -141,6 +97,8 @@ module.exports = router;
  *           description: Create a new User
  *           tags:
  *              - Users
+ *           requestBody:
+ *             $ref: '#/components/requestBody'
  *           responses:
  *             201:
  *               description: Generated successfully
@@ -154,6 +112,9 @@ module.exports = router;
  *                         example: Generated successfully
  *                       data:
  *                         $ref: '#/components/schemas/Users'
+ *                       token:
+ *                         type: string
+ *                         example:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Imlk
  *             400:
  *               $ref: '#/components/responses/badRequestError'
  *             401:
@@ -179,6 +140,21 @@ module.exports = router;
  *          description: Login User
  *          tags:
  *            - Users
+ *          requestBody:
+ *            required: true
+ *            content:
+ *               application/json:
+ *                  schema:
+ *                    type: object
+ *                    properties:
+ *                      email:
+ *                       type: string
+ *                       description: The user email.
+ *                       example: admin@admin.com
+ *                      password:
+ *                       type: string
+ *                       description: The user password
+ *                       example: 123456
  *          responses:
  *            200:
  *              description: OK
@@ -191,12 +167,15 @@ module.exports = router;
  *                        type: string
  *                        example: OK
  *                      data:
- *                        $ref: '#/components/schemas/User'
+ *                        $ref: '#/components/schemas/Users'
+ *                      token:
+ *                        type: string
+ *                        example:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Imlk
  *            400:
  *              $ref: '#/components/responses/badRequestError'
  *            401:
  *              $ref: '#/components/responses/unauthorizedError'
- * /me:
+ * /auth/me:
  *     get:
  *       sumary: Data User
  *       description: Data User

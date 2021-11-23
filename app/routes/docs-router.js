@@ -101,9 +101,9 @@ const swaggerDefinition = {
             schema: {
               type: 'object',
               properties: {
-                message: {
-                  type: 'string',
-                  example: 'No content'
+                data: {
+                  type: 'array',
+                  example: []
                 }
               }
             }

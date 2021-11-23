@@ -5,8 +5,12 @@ module.exports = {
     const slide = await Slide.findOne({ where: { id } });
     return slide;
   },
-  getAll: async () => {
-    const slides = await Slide.findAll();
+  getByOrder: async (order) => {
+    const slide = await Slide.findOne({ where: { order } });
+    return slide;
+  },
+  getAll: async (options) => {
+    const slides = await Slide.findAll(options);
     return slides;
   },
   create: async (data) => {

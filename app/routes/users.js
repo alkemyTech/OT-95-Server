@@ -7,8 +7,6 @@ const { isAdmin } = require('../middlewares/isAdmin');
 const { isOwnerShip } = require('../middlewares/ownership-middleware');
 const { registerValidate } = require('../middlewares/user-middleware');
 
-/* GET users listing. */
-
 router.get('/', [validateJwt, isAdmin], usersController.getAll);
 
 router.get('/:id', [validateJwt, isOwnerShip], usersController.getOne);

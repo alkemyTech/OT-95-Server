@@ -2,9 +2,9 @@ const { Testimonial } = require('../models/index');
 
 module.exports = {
 
-  getAll: () => Testimonial.findAll(),
+  getAll: (limit, offset) => Testimonial.findAndCountAll({ offset, limit, attributes: ['id', 'name', 'image', 'content'] }),
 
-  getById: id => Testimonial.findByPk(id),
+  getById: id => Testimonial.findByPk(id, { attributes: ['id', 'name', 'image', 'content'] }),
 
   create: data => Testimonial.create(data),
 

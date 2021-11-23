@@ -1,6 +1,6 @@
 const statusCode = require('../constants/constants');
 const responseMessage = require('../constants/messages');
-const { getAll } = require('../services/contact-service');
+const { getAll, create } = require('../services/contact-service');
 
 module.exports = {
   getAll: async (req, res) => {
@@ -19,4 +19,15 @@ module.exports = {
         .json(responseMessage.INTERNAL_ERROR);
     }
   },
+
+  create: async (req, res) => {
+    try {
+      const contact = await create(req.body);
+
+      res.status(statusCode.RESPONSE_OK_CREATED)
+      .json({ message: responseMessage.RESPONSE_OK_CREATED, data: contact });
+    } catch (err) {
+      res.status(statusCode.INTERNAL_ERROR).json({ message: responseMessage.INTERNAL_ERROR });
+    }
+  }
 };

@@ -7,7 +7,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
+      userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -21,7 +21,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      post_id: {
+      newsId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -37,6 +37,10 @@ module.exports = {
       },
       updatedAt: {
         allowNull: false,
+        type: Sequelize.DATE
+      },
+      deletedAt: {
+        allowNull: true,
         type: Sequelize.DATE
       }
     });

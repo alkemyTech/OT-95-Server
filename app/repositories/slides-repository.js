@@ -1,31 +1,21 @@
 const { Slide } = require('../models/index');
 
 module.exports = {
-  getById: async (id) => {
-    const slide = await Slide.findOne({ where: { id } });
-    return slide;
-  },
-  getByOrder: async (order) => {
-    const slide = await Slide.findOne({ where: { order } });
-    return slide;
-  },
-  getAll: async () => {
-    const slides = await Slide.findAll({ attributes: ['imageUrl', 'order'] });
-    return slides;
-  },
-  create: async (data) => {
-    const slide = Slide.build(data);
-    await slide.save();
-    return slide;
-  },
+  getById: id => Slide.findByPk(id),
+
+  getByOrder: order => Slide.findOne({ where: { order } }),
+
+  getAll: ({ order }) => Slide.findAll({ order, attributes: ['imageUrl', 'order'] }),
+
+  getAllPagination: (offset, limit) => Slide.findAndCountAll({ offset, limit, attributes: ['imageUrl', 'order'] }),
+
+  create: data => Slide.create(data),
+
   update: async (id, data) => {
-    const slide = await Slide.findOne({ where: { id } });
+    const slide = await Slide.findByPk(id);
     await slide.update(data);
     return slide;
   },
-  destroy: async (id) => {
-    const slide = await Slide.findOne({ where: { id } });
-    await slide.destroy();
-    return slide;
-  }
+
+  destroy: id => Slide.destroy({ where: { id } })
 };

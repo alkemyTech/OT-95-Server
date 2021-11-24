@@ -173,8 +173,8 @@ module.exports = router;
  *                   $ref: '#/components/schemas/Category'
  *       400:
  *         $ref: '#/components/responses/badRequestError'
- *       401:
- *         $ref: '#/components/responses/unauthorizedError'
+ *       403:
+ *         $ref: '#/components/responses/forbidden'
  *
  * /categories/{id}:
  *   parameters:
@@ -204,8 +204,8 @@ module.exports = router;
  *                   $ref: '#/components/schemas/Category'
  *       404:
  *         $ref: '#/components/responses/notFoundError'
- *       401:
- *         $ref: '#/components/responses/unauthorizedError'
+ *       403:
+ *         $ref: '#/components/responses/forbidden'
  *
  *   put:
  *     summary: Update a category by ID
@@ -227,8 +227,8 @@ module.exports = router;
  *                 message:
  *                   type: string
  *                   example: Successfully updated
- *       401:
- *         $ref: '#/components/responses/unauthorizedError'
+ *       403:
+ *         $ref: '#/components/responses/forbidden'
  *       400:
  *         $ref: '#/components/responses/badRequestError'
  *
@@ -241,7 +241,7 @@ module.exports = router;
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Successfully deleted
+ *         description: Deleted successfully
  *         content:
  *           application/json:
  *             schema:
@@ -250,8 +250,8 @@ module.exports = router;
  *                 message:
  *                   type: string
  *                   example: Successfully deleted
- *       401:
- *         $ref: '#/components/responses/unauthorizedError'
+ *       403:
+ *         $ref: '#/components/responses/forbidden'
  *       400:
  *         $ref: '#/components/responses/badRequestError'
  */

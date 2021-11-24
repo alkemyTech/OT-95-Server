@@ -74,46 +74,8 @@ module.exports = router;
  *           example: "2019-01-01T00:00:00.000Z"
  *
  *   responses:
- *     unauthorizedError:
- *       description: UnauthorizedError
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               error:
- *                 type: object
- *                 properties:
- *                   name:
- *                     type: string
- *                   message:
- *                     type: string
- *               msg:
- *                 type: string
  *
- *     badRequestError:
- *       description: BadRequestError
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               message:
- *                 type: string
- *                 example: "Bad request"
- *
- *     notFoundError:
- *       description: NotFoundError
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               message:
- *                 type: string
- *                 example: "Not found"
- *
- *   requestBody:
+ *   requestBodyCategorys:
  *     description: Category object
  *     required: true
  *     content:
@@ -140,6 +102,8 @@ module.exports = router;
  *     description: Get all categories with pagination
  *     tags:
  *       - Categories
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -184,16 +148,7 @@ module.exports = router;
  *                         example: "Category 1"
  *
  *       204:
- *         description: No content
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 message:
- *                   type: string
- *                   example: No content
- *
+ *          $ref: '#/components/responses/noContent'
  *   post:
  *     summary: Create a new category
  *     description: Create a new category
@@ -202,7 +157,7 @@ module.exports = router;
  *     security:
  *       - bearerAuth: []
  *     requestBody:
- *       $ref: '#/components/requestBody'
+ *       $ref: '#/components/requestBodyCategorys'
  *     responses:
  *       201:
  *         description: Successfully created

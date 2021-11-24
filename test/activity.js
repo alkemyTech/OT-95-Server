@@ -28,7 +28,7 @@ describe('POST Activity', () => {
       .set({ Authorization: `Bearer ${token}` })
       .send({
         name: 'prueba activity test',
-        content: 'content activity test',
+        content: 'content activity test'
       })
       .end((err, res) => {
         expect(res.status).equal(201);
@@ -43,7 +43,7 @@ describe('POST Activity', () => {
       .post('/activities')
       .set({ Authorization: `Bearer ${token}` })
       .send({
-        content: 'content activity test',
+        content: 'content activity test'
       })
       .end((err, res) => {
         expect(res.body.errors[0].param).equal('name');
@@ -58,7 +58,7 @@ describe('POST Activity', () => {
       .post('/activities')
       .set({ Authorization: `Bearer ${token}` })
       .send({
-        name: 'name activity test',
+        name: 'name activity test'
       })
       .end((err, res) => {
         expect(res.body.errors[0].param).equal('content');
@@ -76,7 +76,7 @@ describe('PUT Activity', () => {
       .set({ Authorization: `Bearer ${token}` })
       .send({
         name: 'prueba activity test updated',
-        content: 'content activity test updated',
+        content: 'content activity test updated'
       })
       .end((err, res) => {
         expect(res.status).equal(200);
@@ -91,7 +91,7 @@ describe('PUT Activity', () => {
       .set({ Authorization: `Bearer ${token}` })
       .send({
         name: 'prueba activity test updated',
-        content: 'content activity test updated',
+        content: 'content activity test updated'
       })
       .end((err, res) => {
         expect(res.status).equal(400);

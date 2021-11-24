@@ -35,7 +35,7 @@ const swaggerDefinition = {
               properties: {
                 message: {
                   type: 'string',
-                  example: 'Unauthorized user credentialsss'
+                  example: 'Unauthorized user credentials'
                 }
               }
             }

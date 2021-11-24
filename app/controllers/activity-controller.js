@@ -12,7 +12,7 @@ module.exports = {
       if (response) {
         res.status(statusCode.RESPONSE_OK_CREATED).json({
           message: responseMessage.RESPONSE_OK_CREATED,
-          data: response,
+          data: response
         });
       } else {
         res
@@ -35,7 +35,7 @@ module.exports = {
       if (response) {
         res.status(statusCode.RESPONSE_OK).json({
           message: responseMessage.RESPONSE_OK_UPDATED,
-          data: response,
+          data: response
         });
       } else {
         res
@@ -47,5 +47,5 @@ module.exports = {
         .status(statusCode.INTERNAL_ERROR)
         .json(responseMessage.INTERNAL_ERROR);
     }
-  },
+  }
 };

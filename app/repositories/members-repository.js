@@ -1,27 +1,17 @@
 const { Member } = require('../models/index');
 
 module.exports = {
-  getById: async (id) => {
-    const member = await Member.findOne({ where: { id } });
-    return member;
-  },
-  getAll: async () => {
-    const members = await Member.findAll();
-    return members;
-  },
-  create: async (data) => {
-    const member = Member.build(data);
-    await member.save();
-    return member;
-  },
+  getById: id => Member.findByPk(id),
+
+  getAll: () => Member.findAll(),
+
+  create: data => Member.create(data),
+
   update: async (id, data) => {
-    const member = await Member.findOne({ where: { id } });
+    const member = await Member.findByPk(id);
     await member.update(data);
     return member;
   },
-  destroy: async (id) => {
-    const member = await Member.findOne({ where: { id } });
-    await member.destroy();
-    return member;
-  }
+
+  destroy: id => Member.destroy({ where: { id } })
 };

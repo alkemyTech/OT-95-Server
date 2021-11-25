@@ -68,7 +68,33 @@ describe('POST ', () => {
         done();
       });
   });
+
+  it('Should receive an error because the email is missing', (done) => {
+    chai.request(url)
+      .post('/auth/register')
+      .send({
+        firstName: 'Example',
+        lastName: 'Example',
+        password: '123456'
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        done();
+      });
+  });
 });
 
 
-// describe('GET')
+describe('GET', () => {
+
+  it('Should get data the User', (done) => {
+    chai.request(url)
+          .get('/auth/me')
+          .set({ 'Authorization': `Bearer ${token}` })
+          .end((err, res) => {
+            expect(res.body.user);
+            expect(res).to.have.status(200);
+            done();
+          });
+  });
+});

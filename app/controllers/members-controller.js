@@ -23,7 +23,7 @@ module.exports = {
       const url = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
       const members = await membersService.getAll(page, url);
 
-      if (members.length === 0) {
+      if (members.data.length === 0) {
         return res.status(status.NOT_FOUND_ERROR).json({ data: [] });
       }
 
@@ -35,6 +35,7 @@ module.exports = {
 
   create: async (req, res) => {
     try {
+      req.body.image = req.file;
       const member = await membersService.create(req.body);
 
       return res.status(status.RESPONSE_OK_CREATED).json({
@@ -48,6 +49,8 @@ module.exports = {
 
   update: async (req, res) => {
     try {
+      req.body.image = req.file;
+
       const member = await membersService.update(req.params.id, req.body);
 
       return res.status(status.RESPONSE_OK).json({

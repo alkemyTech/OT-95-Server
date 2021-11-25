@@ -8,9 +8,21 @@ module.exports = {
     return member;
   },
 
-  getAll: async () => {
-    const members = await membersRepository.getAll();
-    return members;
+  getAll: async (page, url) => {
+    const limit = 10;
+    const offset = limit * (page - 1);
+    const { count, rows } = await membersRepository.getAll(offset, limit);
+    const pages = Math.ceil(count / limit);
+
+    return {
+      info: {
+        count,
+        pages,
+        next: page < pages ? `${url}?page=${page + 1}` : null,
+        prev: page > 1 ? `${url}?page=${page - 1}` : null
+      },
+      data: rows
+    };
   },
 
   create: async (body) => {

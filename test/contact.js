@@ -6,7 +6,7 @@ const expect = require('chai').expect;
 
 chai.use(chaiHttp);
 
-const url = process.env.URL_TEST;
+const url = process.env.URL_TEST || 'http://localhost:3000/api';
 let token;
 
 describe('POST Contact', () => {

@@ -41,7 +41,7 @@ describe('POST Activity', () => {
     chai
       .request(url)
       .post('/activities')
-      .set({ Authorization: `Bearer ${token}` })
+      .set({Authorization: `Bearer ${token}`})
       .send({
         content: 'content activity test'
       })
@@ -96,6 +96,19 @@ describe('PUT Activity', () => {
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.message).equal('Bad request');
+        done();
+      });
+  });
+});
+
+describe('GET Activity', () => {
+  it('should get all activities', (done) => {
+    chai
+      .request(url)
+      .get('/activities')
+      .set({ Authorization: `Bearer ${token}` })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
         done();
       });
   });

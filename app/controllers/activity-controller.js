@@ -1,6 +1,6 @@
-const statusCode = require('../constants/constants');
-const responseMessage = require('../constants/messages');
-const { create, update } = require('../services/activity-service');
+const statusCode = require("../constants/constants");
+const responseMessage = require("../constants/messages");
+const { create, update, getAll } = require("../services/activity-service");
 
 module.exports = {
   create: async (req, res) => {
@@ -12,7 +12,7 @@ module.exports = {
       if (response) {
         res.status(statusCode.RESPONSE_OK_CREATED).json({
           message: responseMessage.RESPONSE_OK_CREATED,
-          data: response
+          data: response,
         });
       } else {
         res
@@ -35,7 +35,7 @@ module.exports = {
       if (response) {
         res.status(statusCode.RESPONSE_OK).json({
           message: responseMessage.RESPONSE_OK_UPDATED,
-          data: response
+          data: response,
         });
       } else {
         res
@@ -47,5 +47,20 @@ module.exports = {
         .status(statusCode.INTERNAL_ERROR)
         .json(responseMessage.INTERNAL_ERROR);
     }
-  }
+  },
+  getAll: async (req, res) => {
+    try {
+      const response = await getAll();
+
+      if (response.length > 0) {
+        res.status(statusCode.RESPONSE_OK).json({ data: response });
+      } else {
+        res.status(statusCode.NOT_FOUND_ERROR).json({ data: [] });
+      }
+    } catch (error) {
+      res
+        .status(statusCode.INTERNAL_ERROR)
+        .json(responseMessage.INTERNAL_ERROR);
+    }
+  },
 };

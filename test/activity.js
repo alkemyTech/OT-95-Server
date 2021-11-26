@@ -31,7 +31,7 @@ describe('POST Activity', () => {
         content: 'content activity test'
       })
       .end((err, res) => {
-        expect(res.status).equal(201);
+        expect(res).to.have.status(201);
         id = res.body.data.id;
         done();
       });
@@ -47,7 +47,7 @@ describe('POST Activity', () => {
       })
       .end((err, res) => {
         expect(res.body.errors[0].param).equal('name');
-        expect(res.status).equal(400);
+        expect(res).to.have.status(400);
         done();
       });
   });
@@ -62,7 +62,7 @@ describe('POST Activity', () => {
       })
       .end((err, res) => {
         expect(res.body.errors[0].param).equal('content');
-        expect(res.status).equal(400);
+        expect(res).to.have.status(400);
         done();
       });
   });
@@ -79,7 +79,7 @@ describe('PUT Activity', () => {
         content: 'content activity test updated'
       })
       .end((err, res) => {
-        expect(res.status).equal(200);
+        expect(res).to.have.status(200);
         done();
       });
   });
@@ -94,7 +94,7 @@ describe('PUT Activity', () => {
         content: 'content activity test updated'
       })
       .end((err, res) => {
-        expect(res.status).equal(400);
+        expect(res).to.have.status(400);
         expect(res.body.message).equal('Bad request');
         done();
       });

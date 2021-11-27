@@ -237,8 +237,6 @@ module.exports = router;
  *         $ref: '#/components/responses/forbidden'
  *       400:
  *         $ref: '#/components/responses/badRequestError'
- *       403:
- *         $ref: '#/components/responses/forbidden'
  *
  *   delete:
  *     summary: Delete a category by ID
@@ -262,7 +260,5 @@ module.exports = router;
  *         $ref: '#/components/responses/forbidden'
  *       400:
  *         $ref: '#/components/responses/badRequestError'
- *       403:
- *         $ref: '#/components/responses/forbidden'
  */
 

@@ -24,7 +24,7 @@ module.exports = router;
  * @swagger
  * components:
  *   schemas:
- *     Useres:
+ *     Users:
  *       type: object
  *       required:
  *         - firstName
@@ -103,7 +103,7 @@ module.exports = router;
  *     summary: Get all users
  *     description: Get all users
  *     tags:
- *       - Useres
+ *       - Users
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -132,7 +132,7 @@ module.exports = router;
  *     summary: Create a new user
  *     description: Create a new user
  *     tags:
- *       - Useres
+ *       - Users
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -149,7 +149,7 @@ module.exports = router;
  *                   type: string
  *                   example: Successfully created
  *                 data:
- *                   $ref: '#/components/schemas/Useres'
+ *                   $ref: '#/components/schemas/Users'
  *       400:
  *         $ref: '#/components/responses/badRequestError'
  *       401:
@@ -168,7 +168,7 @@ module.exports = router;
  *     summary: Get a user by ID
  *     description: Get a user by ID
  *     tags:
- *       - Useres
+ *       - Users
  *     security:
  *       - bearerAuth: []
  *     responses:
@@ -180,7 +180,7 @@ module.exports = router;
  *               type: object
  *               properties:
  *                 data:
- *                   $ref: '#/components/schemas/Useres'
+ *                   $ref: '#/components/schemas/Users'
  *       404:
  *         $ref: '#/components/responses/notFoundError'
  *       401:
@@ -190,7 +190,7 @@ module.exports = router;
  *     summary: Update a user by ID
  *     description: Update a user by ID
  *     tags:
- *       - Useres
+ *       - Users
  *     security:
  *       - bearerAuth: []
  *     requestBody:
@@ -215,7 +215,7 @@ module.exports = router;
  *     summary: Delete a User by ID
  *     description: Delete a User by ID
  *     tags:
- *       - Useres
+ *       - Users
  *     security:
  *       - bearerAuth: []
  *     responses:

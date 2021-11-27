@@ -17,7 +17,7 @@ module.exports = router;
  * @swagger
  *  components:
  *    schemas:
- *      Users:
+ *      Users (auth):
  *          type: object
  *          required:
  *            - firstName
@@ -96,7 +96,7 @@ module.exports = router;
  *           sumary: Create a new User
  *           description: Create a new User
  *           tags:
- *              - Users
+ *              - Users (auth)
  *           requestBody:
  *             $ref: '#/components/requestBody'
  *           responses:
@@ -111,7 +111,7 @@ module.exports = router;
  *                         type: string
  *                         example: Generated successfully
  *                       data:
- *                         $ref: '#/components/schemas/Users'
+ *                         $ref: '#/components/schemas/Users (auth)'
  *                       token:
  *                         type: string
  *                         example:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Imlk
@@ -139,7 +139,7 @@ module.exports = router;
  *          sumary: Login User
  *          description: Login User
  *          tags:
- *            - Users
+ *            - Users (auth)
  *          requestBody:
  *            required: true
  *            content:
@@ -167,7 +167,7 @@ module.exports = router;
  *                        type: string
  *                        example: OK
  *                      data:
- *                        $ref: '#/components/schemas/Users'
+ *                        $ref: '#/components/schemas/Users (auth)'
  *                      token:
  *                        type: string
  *                        example:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Imlk
@@ -180,7 +180,7 @@ module.exports = router;
  *       sumary: Data User
  *       description: Data User
  *       tags:
- *         - Users
+ *         - Users (auth)
  *       security:
  *         - bearerAuth: []
  *       responses:
@@ -192,7 +192,7 @@ module.exports = router;
  *                 type: object
  *                 properties:
  *                   data:
- *                     $ref: '#/components/schemas/Users'
+ *                     $ref: '#/components/schemas/Users (auth)'
  *         404:
  *           $ref: '#/components/responses/notFoundError'
  *         401:

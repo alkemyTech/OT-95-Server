@@ -3,7 +3,7 @@ const { Member } = require('../models/index');
 module.exports = {
   getById: id => Member.findByPk(id),
 
-  getAll: () => Member.findAll(),
+  getAll: (offset, limit) => Member.findAndCountAll({ offset, limit }),
 
   create: data => Member.create(data),
 

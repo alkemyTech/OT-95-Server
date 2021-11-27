@@ -6,7 +6,7 @@ module.exports = {
     if (!img) {
       return new Error('No image uploaded');
     }
-    const tempFolder = path.join(__dirname, '../temp');
+    const tempFolder = path.join(__dirname, '../../temp');
 
     if (!fs.existsSync(tempFolder)) {
       fs.mkdirSync(tempFolder);

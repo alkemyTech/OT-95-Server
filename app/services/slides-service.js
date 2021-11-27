@@ -9,21 +9,9 @@ module.exports = {
     return slide;
   },
 
-  getAll: async (page, url) => {
-    const limit = 10;
-    const offset = limit * (page - 1);
-    const { count, rows } = await slidesRepository.getAllPagination(offset, limit);
-    const pages = Math.ceil(count / limit);
-
-    return {
-      info: {
-        count,
-        pages,
-        next: page < pages ? `${url}?page=${page + 1}` : null,
-        prev: page > 1 ? `${url}?page=${page - 1}` : null
-      },
-      data: rows
-    };
+  getAll: async () => {
+    const slides = await slidesRepository.getAll({ order: [['order', 'ASC']] });
+    return slides;
   },
 
   create: async (body) => {

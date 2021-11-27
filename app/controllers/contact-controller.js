@@ -7,11 +7,11 @@ module.exports = {
     try {
       const contacts = await getAll();
       if (contacts.length > 0) {
-        res.status(statusCode.RESPONSE_OK).json(contacts);
+        res.status(statusCode.RESPONSE_OK).json({ data: contacts });
       } else {
         res
           .status(statusCode.RESPONSE_OK_NO_CONTENT)
-          .json(responseMessage.RESPONSE_OK_NO_CONTENT);
+          .json({ message: responseMessage.RESPONSE_OK_NO_CONTENT });
       }
     } catch (error) {
       res

@@ -19,15 +19,13 @@ module.exports = {
 
   getAll: async (req, res) => {
     try {
-      const page = Number(req.query.page) || 1;
-      const url = `${req.protocol}://${req.get('host')}${req.baseUrl}`;
-      const slides = await slidesService.getAll(page, url);
+      const slides = await slidesService.getAll();
 
-      if (slides.data.length === 0) {
+      if (slides.length === 0) {
         return res.status(status.NOT_FOUND_ERROR).json({ data: [] });
       }
 
-      return res.status(status.RESPONSE_OK).json(slides);
+      return res.status(status.RESPONSE_OK).json({ data: slides });
     } catch (error) {
       return res.status(status.INTERNAL_ERROR).json({ message: messages.INTERNAL_ERROR });
     }

@@ -27,7 +27,7 @@ const swaggerDefinition = {
     responses: {
 
       unauthorizedError: {
-        description: 'UnauthorizedError',
+        description: 'Unauthorized error',
         content: {
           'application/json': {
             schema: {
@@ -61,7 +61,7 @@ const swaggerDefinition = {
       },
 
       badRequestError: {
-        description: 'BadRequestError',
+        description: 'Bad request error',
         content: {
           'application/json': {
             schema: {
@@ -78,7 +78,7 @@ const swaggerDefinition = {
       },
 
       notFoundError: {
-        description: 'notFoundError',
+        description: 'Not found error',
         content: {
           'application/json': {
             schema: {

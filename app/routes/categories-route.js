@@ -233,8 +233,8 @@ module.exports = router;
  *                 message:
  *                   type: string
  *                   example: Successfully updated
- *       401:
- *         $ref: '#/components/responses/unauthorizedError'
+ *       403:
+ *         $ref: '#/components/responses/forbidden'
  *       400:
  *         $ref: '#/components/responses/badRequestError'
  *       403:
@@ -249,7 +249,7 @@ module.exports = router;
  *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Successfully deleted
+ *         description: Deleted successfully
  *         content:
  *           application/json:
  *             schema:
@@ -258,8 +258,8 @@ module.exports = router;
  *                 message:
  *                   type: string
  *                   example: Successfully deleted
- *       401:
- *         $ref: '#/components/responses/unauthorizedError'
+ *       403:
+ *         $ref: '#/components/responses/forbidden'
  *       400:
  *         $ref: '#/components/responses/badRequestError'
  *       403:

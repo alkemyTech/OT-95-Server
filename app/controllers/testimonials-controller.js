@@ -13,7 +13,7 @@ module.exports = {
       if (testimonials.data.length > 0) {
         res.status(codeStatus.RESPONSE_OK).json(testimonials);
       } else {
-        res.status(codeStatus.NOT_FOUND_ERROR).json({ data: [] });
+        res.status(codeStatus.RESPONSE_OK_NO_CONTENT).json({ data: [] });
       }
     } catch (err) {
       res.status(codeStatus.INTERNAL_ERROR).json({ message: messages.INTERNAL_ERROR });

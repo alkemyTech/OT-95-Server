@@ -95,7 +95,7 @@ const swaggerDefinition = {
       },
 
       noContent: {
-        description: 'No content',
+        description: 'No content to show',
         content: {
           'application/json': {
             schema: {

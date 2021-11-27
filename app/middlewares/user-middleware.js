@@ -15,5 +15,11 @@ module.exports = {
     check('email', 'email is required').notEmpty(),
     check('password', 'password is required').notEmpty(),
     validateFields
-  ]
+  ],
+
+  updateValidate: [
+    check('firstName', 'firstName is a string').optional().isString(),
+    check('lastName', 'lastname is a string').optional().isString(),
+    validateFields
+  ],
 };

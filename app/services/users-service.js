@@ -78,11 +78,13 @@ module.exports = {
       const { id } = req.params;
       const data = req.body;
       const saltRounds = 10;
-      const userRepeat = await UsersRepository.getUserWithEmail(data.email);
+      console.log('hola');
+      const userRepeat = await UsersRepository.getUserWithEmail(data.email || '');
+      console.log(userRepeat);
       if (userRepeat) {
         res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.EMAIL_REPEAT);
       } else {
-        data.password = bcrypt.hashSync(data.password, saltRounds);
+        //data.password = bcrypt.hashSync(data.password, saltRounds);
         const user = await UsersRepository.update(id, data);
         if (user[0] === 0) {
           res.status(codeStatus.BAD_REQUEST_ERROR).json({ message: messages.BAD_REQUEST_ERROR });

@@ -75,7 +75,7 @@ module.exports = router;
  *
  *   responses:
  *
- *   requestBodyCategorys:
+ *   requestBodyCategories:
  *     description: Category object
  *     required: true
  *     content:
@@ -149,6 +149,8 @@ module.exports = router;
  *
  *       204:
  *          $ref: '#/components/responses/noContent'
+ *       401:
+ *          $ref: '#/components/responses/unauthorized'
  *   post:
  *     summary: Create a new category
  *     description: Create a new category
@@ -157,7 +159,7 @@ module.exports = router;
  *     security:
  *       - bearerAuth: []
  *     requestBody:
- *       $ref: '#/components/requestBodyCategorys'
+ *       $ref: '#/components/requestBodyCategories'
  *     responses:
  *       201:
  *         description: Successfully created
@@ -175,6 +177,8 @@ module.exports = router;
  *         $ref: '#/components/responses/badRequestError'
  *       401:
  *         $ref: '#/components/responses/unauthorizedError'
+ *       403:
+ *         $ref: '#/components/responses/forbidden'
  *
  * /categories/{id}:
  *   parameters:
@@ -206,6 +210,8 @@ module.exports = router;
  *         $ref: '#/components/responses/notFoundError'
  *       401:
  *         $ref: '#/components/responses/unauthorizedError'
+ *       403:
+ *         $ref: '#/components/responses/forbidden'
  *
  *   put:
  *     summary: Update a category by ID
@@ -215,7 +221,7 @@ module.exports = router;
  *     security:
  *       - bearerAuth: []
  *     requestBody:
- *       $ref: '#/components/requestBody'
+ *       $ref: '#/components/requestBodyCategories'
  *     responses:
  *       200:
  *         description: Successfully updated
@@ -231,6 +237,8 @@ module.exports = router;
  *         $ref: '#/components/responses/unauthorizedError'
  *       400:
  *         $ref: '#/components/responses/badRequestError'
+ *       403:
+ *         $ref: '#/components/responses/forbidden'
  *
  *   delete:
  *     summary: Delete a category by ID
@@ -254,5 +262,7 @@ module.exports = router;
  *         $ref: '#/components/responses/unauthorizedError'
  *       400:
  *         $ref: '#/components/responses/badRequestError'
+ *       403:
+ *         $ref: '#/components/responses/forbidden'
  */
 

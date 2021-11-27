@@ -15,12 +15,12 @@ const validateJwt = (req, res, next) => {
     } catch (error) {
       res.status(constants.NOK_USER_CREDENTIALS).json({
         error,
-        msg: messages.INVALID_TOKEN
+        message: messages.INVALID_TOKEN
       });
     }
   } else {
     res.status(constants.BAD_REQUEST_ERROR).json({
-      msg: messages.NO_TOKEN
+      message: messages.NO_TOKEN
     });
   }
 };

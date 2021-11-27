@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "test": "mocha --timeout 10000",
     "db": "sequelize db:drop && sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
-    "dbTest": "sequelize db:drop --env test && sequelize db:create --env test && sequelize db:migrate --env test && sequelize db:seed:all --env test"
+    "dbTest": "sequelize db:drop --env test && sequelize db:create --env test && sequelize db:migrate --env test && sequelize db:seed:all --env test",
+    "test": "npm run dbTest && mocha --timeout 10000"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.6.0",

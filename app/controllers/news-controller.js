@@ -58,10 +58,13 @@ const commentsService = require('../services/comments-service');
  *        $ref: '#/components/responses/UnauthorizedError'
  */
 const getAll = async (req, res) => {
+  const perPage = Number(req.query.perPage) || 20;
+  const page = Number(req.query.page) || 1;
+
   try {
-    const news = await newsService.getAll();
-    if (news.length > 0) {
-      res.status(codeStatus.RESPONSE_OK).json(news);
+    const docs = await newsService.getAll(perPage, page);
+    if (docs) {            
+      res.status(codeStatus.RESPONSE_OK).json(docs);
     } else {
       res.status(codeStatus.RESPONSE_OK_NO_CONTENT).json(messages.RESPONSE_OK_NO_CONTENT);
     }

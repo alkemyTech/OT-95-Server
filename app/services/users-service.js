@@ -78,7 +78,9 @@ module.exports = {
       const { id } = req.params;
       const data = req.body;
       const saltRounds = 10;
-      const userRepeat = await UsersRepository.getUserWithEmail(data.email);
+      console.log('hola');
+      const userRepeat = await UsersRepository.getUserWithEmail(data.email || '');
+      console.log(userRepeat);
       if (userRepeat) {
         res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.EMAIL_REPEAT);
       } else {

@@ -84,7 +84,7 @@ module.exports = {
       if (userRepeat) {
         res.status(codeStatus.BAD_REQUEST_ERROR).json(messages.EMAIL_REPEAT);
       } else {
-        //data.password = bcrypt.hashSync(data.password, saltRounds);
+        data.password = bcrypt.hashSync(data.password, saltRounds);
         const user = await UsersRepository.update(id, data);
         if (user[0] === 0) {
           res.status(codeStatus.BAD_REQUEST_ERROR).json({ message: messages.BAD_REQUEST_ERROR });

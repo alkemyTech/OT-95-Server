@@ -1,6 +1,17 @@
 const newsRepository = require('../repositories/news-repository');
 
-const getAll = () => newsRepository.getAll();
+const getAll = async (perPage, page) => {
+    const totalDocs = await newsRepository.count();
+    const docs = await newsRepository.getAll(perPage, page);
+    let news = {
+        data: docs,
+        perPage,
+        page,
+        totalDocs
+    };
+    if(perPage * (page + 1) <= totalDocs) news.nextPage = (page + 1);
+    return news;
+};
 
 const getById = id => newsRepository.getById(id);
 

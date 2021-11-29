@@ -2,7 +2,9 @@ const { News } = require('../models/index');
 
 module.exports = {
 
-  getAll: () => News.findAll(),
+  getAll: (perPage, page) => {
+    return News.findAll({limit: perPage, offset: ((page - 1) * perPage)});
+  },
 
   getById: id => News.findByPk(id),
 
@@ -18,6 +20,8 @@ module.exports = {
     content
   }, { where: { id } }),
 
-  destroy: id => News.destroy({ where: { id } })
+  destroy: id => News.destroy({ where: { id } }),
+
+  count: () => News.count()
 
 };

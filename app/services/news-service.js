@@ -6,7 +6,7 @@ const getAll = async (perPage, page) => {
     let news = {
         data: docs,
         perPage,
-        page: (page + 1),
+        page,
         totalDocs
     };
     if(perPage * (page + 1) <= totalDocs) news.nextPage = (page + 1);
